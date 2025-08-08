@@ -88,6 +88,9 @@
     showLightboxImage(startIndex);
     overlay.classList.add('is-open');
     
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
     // Keyboard navigation
     document.addEventListener('keydown', handleLightboxKeys);
     
@@ -96,18 +99,25 @@
     var startY = null;
     var swiping = false;
     var lastSwipeTime = 0;
-    var swipeCooldown = 300; // ms
+    var swipeCooldown = 500; // Increased cooldown
     
     function handleTouchStart(e){
+      e.preventDefault(); // Prevent any default touch behavior
       var t = e.touches ? e.touches[0] : e;
       startX = t.clientX;
       startY = t.clientY;
       swiping = true;
     }
     
+    function handleTouchMove(e){
+      if (!swiping) return;
+      e.preventDefault(); // Prevent scroll while swiping
+    }
+    
     function handleTouchEnd(e){
       if (!swiping) return;
       
+      e.preventDefault();
       var now = Date.now();
       if (now - lastSwipeTime < swipeCooldown) {
         startX = startY = null;
@@ -118,9 +128,9 @@
       var t = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0] : e;
       var dx = t.clientX - startX;
       var dy = Math.abs(t.clientY - startY);
-      var threshold = 50; // Increased threshold
+      var threshold = 80; // Much higher threshold
       
-      if (Math.abs(dx) > threshold && dy < 80 && lightboxImages.length > 1){
+      if (Math.abs(dx) > threshold && dy < 100 && lightboxImages.length > 1){
         if (dx < 0) showLightboxImage(lightboxCurrent + 1);
         else showLightboxImage(lightboxCurrent - 1);
         lastSwipeTime = now;
@@ -129,13 +139,16 @@
       swiping = false;
     }
     
-    overlay.addEventListener('touchstart', handleTouchStart, { passive: true });
-    overlay.addEventListener('touchend', handleTouchEnd);
+    overlay.addEventListener('touchstart', handleTouchStart, { passive: false });
+    overlay.addEventListener('touchmove', handleTouchMove, { passive: false });
+    overlay.addEventListener('touchend', handleTouchEnd, { passive: false });
   }
 
   function closeLightbox(){
     if (globalOverlay) globalOverlay.classList.remove('is-open');
     document.removeEventListener('keydown', handleLightboxKeys);
+    // Restore body scroll
+    document.body.style.overflow = '';
     lightboxImages = [];
     lightboxCurrent = 0;
   }
