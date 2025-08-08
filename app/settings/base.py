@@ -203,7 +203,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "app"
+WAGTAIL_SITE_NAME = os.environ.get("WAGTAIL_SITE_NAME", "Site Name")
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
