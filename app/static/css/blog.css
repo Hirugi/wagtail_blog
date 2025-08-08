@@ -258,6 +258,68 @@ h1, h2, h3 {
 .carousel-zoom-overlay.is-open { display: flex; }
 .carousel-zoom-image { max-width: 95vw; max-height: 95vh; }
 
+/* Lightbox navigation */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-nav:hover { background: rgba(0,0,0,0.9); }
+.lightbox-nav--prev { left: 20px; }
+.lightbox-nav--next { right: 20px; }
+
+.lightbox-counter {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(0,0,0,0.9); }
+
+@media (max-width: 600px) {
+  .lightbox-nav { width: 40px; height: 40px; font-size: 20px; }
+  .lightbox-nav--prev { left: 10px; }
+  .lightbox-nav--next { right: 10px; }
+  .lightbox-counter { top: 10px; padding: 6px 12px; font-size: 12px; }
+  .lightbox-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 20px; }
+}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .site-header__inner, .site-footer__inner { padding: 10px 12px; }
@@ -345,8 +407,29 @@ h1, h2, h3 {
 }
 
 @media (max-width: 600px) {
-  .header-right { width: 100%; justify-content: space-between; gap: 8px; }
-  .site-search input[type="text"] { min-width: 120px; }
+  .site-header__inner { 
+    flex-direction: column; 
+    align-items: stretch; 
+    padding: 16px 12px;
+  }
+  .site-brand { 
+    order: -1; 
+    text-align: center; 
+    margin-bottom: 8px; 
+  }
+  .site-nav { 
+    order: 1; 
+    margin-bottom: 8px; 
+  }
+  .site-nav .nav-links { 
+    justify-content: center; 
+    flex-wrap: wrap; 
+  }
+  .header-right { 
+    order: 2; 
+    justify-content: center; 
+  }
+  .site-search input[type="text"] { min-width: 140px; }
   .post-content { padding: 16px; }
   .read-more { padding: 7px 14px; }
   .carousel__control { padding: 10px 14px; font-size: 1rem; }
