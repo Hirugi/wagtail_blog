@@ -82,8 +82,14 @@
   }
 
   function openLightbox(images, startIndex){
+    // Reset global state
+    lightboxImages = [];
+    lightboxCurrent = 0;
+    
+    // Set new data
     lightboxImages = images;
     lightboxCurrent = startIndex;
+    
     var overlay = ensureOverlay();
     showLightboxImage(startIndex);
     overlay.classList.add('is-open');
@@ -148,16 +154,36 @@
       swiping = false;
     }
     
+    // Store handlers for cleanup
+    overlay._touchStartHandler = handleTouchStart;
+    overlay._touchMoveHandler = handleTouchMove;
+    overlay._touchEndHandler = handleTouchEnd;
+    
     overlay.addEventListener('touchstart', handleTouchStart, { passive: true });
     overlay.addEventListener('touchmove', handleTouchMove, { passive: false });
     overlay.addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
   function closeLightbox(){
-    if (globalOverlay) globalOverlay.classList.remove('is-open');
+    if (globalOverlay) {
+      // Remove touch event listeners
+      if (globalOverlay._touchStartHandler) {
+        globalOverlay.removeEventListener('touchstart', globalOverlay._touchStartHandler);
+        globalOverlay.removeEventListener('touchmove', globalOverlay._touchMoveHandler);
+        globalOverlay.removeEventListener('touchend', globalOverlay._touchEndHandler);
+        globalOverlay._touchStartHandler = null;
+        globalOverlay._touchMoveHandler = null;
+        globalOverlay._touchEndHandler = null;
+      }
+      
+      globalOverlay.classList.remove('is-open');
+    }
+    
     document.removeEventListener('keydown', handleLightboxKeys);
     // Restore body scroll
     document.body.style.overflow = '';
+    
+    // Reset global state
     lightboxImages = [];
     lightboxCurrent = 0;
   }
