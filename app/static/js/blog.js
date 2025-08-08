@@ -63,8 +63,22 @@
     lightboxCurrent = (index + lightboxImages.length) % lightboxImages.length;
     var img = globalOverlay.querySelector('.carousel-zoom-image');
     var counter = globalOverlay.querySelector('.lightbox-counter');
+    var prevBtn = globalOverlay.querySelector('.lightbox-nav--prev');
+    var nextBtn = globalOverlay.querySelector('.lightbox-nav--next');
+    
     img.setAttribute('src', lightboxImages[lightboxCurrent]);
-    counter.textContent = (lightboxCurrent + 1) + ' / ' + lightboxImages.length;
+    
+    // Show/hide navigation elements based on image count
+    if (lightboxImages.length > 1) {
+      counter.textContent = (lightboxCurrent + 1) + ' / ' + lightboxImages.length;
+      counter.style.display = 'block';
+      prevBtn.style.display = 'flex';
+      nextBtn.style.display = 'flex';
+    } else {
+      counter.style.display = 'none';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
   }
 
   function openLightbox(images, startIndex){
@@ -81,6 +95,8 @@
     var startX = null;
     var startY = null;
     var swiping = false;
+    var lastSwipeTime = 0;
+    var swipeCooldown = 300; // ms
     
     function handleTouchStart(e){
       var t = e.touches ? e.touches[0] : e;
@@ -91,14 +107,23 @@
     
     function handleTouchEnd(e){
       if (!swiping) return;
+      
+      var now = Date.now();
+      if (now - lastSwipeTime < swipeCooldown) {
+        startX = startY = null;
+        swiping = false;
+        return;
+      }
+      
       var t = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0] : e;
       var dx = t.clientX - startX;
       var dy = Math.abs(t.clientY - startY);
-      var threshold = 40;
+      var threshold = 50; // Increased threshold
       
-      if (Math.abs(dx) > threshold && dy < 60){
+      if (Math.abs(dx) > threshold && dy < 80 && lightboxImages.length > 1){
         if (dx < 0) showLightboxImage(lightboxCurrent + 1);
         else showLightboxImage(lightboxCurrent - 1);
+        lastSwipeTime = now;
       }
       startX = startY = null;
       swiping = false;
