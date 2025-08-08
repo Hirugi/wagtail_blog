@@ -99,10 +99,13 @@
     var startY = null;
     var swiping = false;
     var lastSwipeTime = 0;
-    var swipeCooldown = 500; // Increased cooldown
+    var swipeCooldown = 500;
+    var minSwipeDistance = 80;
     
     function handleTouchStart(e){
-      e.preventDefault(); // Prevent any default touch behavior
+      // Don't prevent default on buttons
+      if (e.target.closest('button')) return;
+      
       var t = e.touches ? e.touches[0] : e;
       startX = t.clientX;
       startY = t.clientY;
@@ -111,13 +114,20 @@
     
     function handleTouchMove(e){
       if (!swiping) return;
-      e.preventDefault(); // Prevent scroll while swiping
+      
+      // Only prevent scroll if we're actually swiping
+      var t = e.touches ? e.touches[0] : e;
+      var dx = Math.abs(t.clientX - startX);
+      var dy = Math.abs(t.clientY - startY);
+      
+      if (dx > 10 || dy > 10) {
+        e.preventDefault();
+      }
     }
     
     function handleTouchEnd(e){
       if (!swiping) return;
       
-      e.preventDefault();
       var now = Date.now();
       if (now - lastSwipeTime < swipeCooldown) {
         startX = startY = null;
@@ -128,9 +138,8 @@
       var t = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0] : e;
       var dx = t.clientX - startX;
       var dy = Math.abs(t.clientY - startY);
-      var threshold = 80; // Much higher threshold
       
-      if (Math.abs(dx) > threshold && dy < 100 && lightboxImages.length > 1){
+      if (Math.abs(dx) > minSwipeDistance && dy < 100 && lightboxImages.length > 1){
         if (dx < 0) showLightboxImage(lightboxCurrent + 1);
         else showLightboxImage(lightboxCurrent - 1);
         lastSwipeTime = now;
@@ -139,9 +148,9 @@
       swiping = false;
     }
     
-    overlay.addEventListener('touchstart', handleTouchStart, { passive: false });
+    overlay.addEventListener('touchstart', handleTouchStart, { passive: true });
     overlay.addEventListener('touchmove', handleTouchMove, { passive: false });
-    overlay.addEventListener('touchend', handleTouchEnd, { passive: false });
+    overlay.addEventListener('touchend', handleTouchEnd, { passive: true });
   }
 
   function closeLightbox(){
