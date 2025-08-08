@@ -1,2 +1,8 @@
 Django>=5.2,<5.3
 wagtail>=7.0,<7.1
+
+pillow~=11.3.0
+django-modelcluster~=6.4
+django-taggit~=6.1.0
+beautifulsoup4~=4.13.4
+django-filter~=25.1
