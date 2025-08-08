@@ -10,7 +10,7 @@ DEBUG = False
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if os.environ.get("DJANGO_ALLOWED_HOSTS") else ["*"]
 
 # Secret key
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", SECRET_KEY)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # Database: PostgreSQL via DATABASE_URL or discrete vars
 DATABASE_URL = os.environ.get("DATABASE_URL")
