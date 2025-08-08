@@ -357,3 +357,4 @@ h1, h2, h3 {
 /* Responsive image in posts */
 .post-responsive-image { margin: 12px 0 18px; }
 .post-responsive-image__img { width: 100%; height: auto; display: block; border-radius: 6px; }
+.post-responsive-image__img[data-zoomable] { cursor: zoom-in; }

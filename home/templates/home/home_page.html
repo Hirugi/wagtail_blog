@@ -51,7 +51,7 @@
                 <div class="post-content">
                     <span class="post-date">
                         {% if post.first_published_at %}
-                            {{ post.first_published_at|date:"d M y, H:m" }}
+                            {{ post.first_published_at|date:"j F, Y" }}
                         {% endif %}
                     </span>
                     <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>

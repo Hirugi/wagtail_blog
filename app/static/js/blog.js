@@ -80,8 +80,34 @@
     });
   }
 
+  // Generic lightbox for images marked as data-zoomable (outside carousel too)
+  function initGlobalLightbox(){
+    var overlay = null;
+    function ensure(){
+      if (overlay) return overlay;
+      overlay = document.createElement('div');
+      overlay.className = 'carousel-zoom-overlay';
+      var img = document.createElement('img');
+      img.className = 'carousel-zoom-image';
+      overlay.appendChild(img);
+      overlay.addEventListener('click', function(){ overlay.classList.remove('is-open'); });
+      document.body.appendChild(overlay);
+      return overlay;
+    }
+
+    document.addEventListener('click', function(e){
+      var t = e.target;
+      if (!t || !t.matches('[data-zoomable]')) return;
+      var src = t.getAttribute('data-fullsrc') || t.getAttribute('src');
+      var ov = ensure();
+      ov.querySelector('img').setAttribute('src', src);
+      ov.classList.add('is-open');
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('[data-carousel]').forEach(initCarousel);
+    initGlobalLightbox();
   });
 })();
 
