@@ -1,0 +1,21 @@
+{% load wagtailimages_tags i18n %}
+<div class="carousel" data-carousel>
+  <div class="carousel__viewport">
+    {% for img in self.images %}
+      {% image img width-1400 as rendition %}
+      <div class="carousel__slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.counter0 }}">
+        <img src="{{ rendition.url }}" alt="" class="carousel__image" data-zoomable>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="carousel__footer">
+    <button class="carousel__control carousel__control--prev" data-carousel-prev aria-label="Prev">‹</button>
+    <div class="carousel__indicator">
+      <span class="carousel__indicator-current" data-carousel-current>1</span>
+      /
+      <span class="carousel__indicator-total" data-carousel-total>{{ self.images|length }}</span>
+    </div>
+    <button class="carousel__control carousel__control--next" data-carousel-next aria-label="Next">›</button>
+  </div>
+</div>
+

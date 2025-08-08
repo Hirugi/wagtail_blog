@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags i18n %}
+
+{% block body_class %}blog_page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="blog-post-container">
+    <a href="/" class="back-link">&larr; {% trans "Back to list" %}</a>
+    <h1 class="post-page-title">{{ page.title }}</h1>
+    <span class="post-page-date">
+        {% if page.first_published_at %}
+            {{ page.first_published_at|date:"d M y, H:m" }}
+        {% endif %}
+    </span>
+    {% if page.tags.all %}
+        <div class="post-tags">
+            <span class="tag-cloud-label">{% trans "Tags:" %}</span>
+            {% for tag in page.tags.all %}
+                <a href="/?tags={{ tag }}" class="tag-chip">#{{ tag }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if page.cover_image %}
+        {% image page.cover_image width-1200 as cover %}
+        <div class="cover-image">
+            <img src="{{ cover.url }}" alt="{{ page.title }}">
+        </div>
+    {% endif %}
+    <div class="post-body">
+        {% if page.body %}
+            {% for block in page.body %}
+                {{ block }}
+            {% endfor %}
+        {% else %}
+            <p>{% trans "Page is empty." %}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

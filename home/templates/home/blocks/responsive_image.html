@@ -1,0 +1,6 @@
+{% load wagtailimages_tags %}
+<figure class="post-responsive-image">
+  {% image self width-1200 as rendition %}
+  <img src="{{ rendition.url }}" alt="{{ self.alt_text }}" class="post-responsive-image__img">
+</figure>
+

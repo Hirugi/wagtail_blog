@@ -1,0 +1,145 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wagtail_blog_min\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-08 16:50+0900\n"
+"PO-Revision-Date: 2025-08-08 15:05+0900\n"
+"Last-Translator: Auto <auto@example.com>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: app/templates/includes/header.html:6
+msgid "Blog"
+msgstr "Блог"
+
+#: app/templates/includes/header.html:56
+msgid "Search"
+msgstr "Поиск"
+
+#: home/models.py:26 home/models.py:37
+msgid "Image"
+msgstr "Изображение"
+
+#: home/models.py:26
+msgid "Images"
+msgstr "Изображения"
+
+#: home/models.py:30
+msgid "Image carousel"
+msgstr "Карусель изображений"
+
+#: home/models.py:42
+msgid "Alternative text"
+msgstr "Текст - описание"
+
+#: home/models.py:43
+msgid "Don't downscale on upload"
+msgstr "Не уменьшать при загрузке"
+
+#: home/models.py:111
+msgid "Navigation link"
+msgstr "Ссылка в навигации"
+
+#: home/models.py:112
+msgid "Navigation links"
+msgstr "Ссылки в навигации"
+
+#: home/models.py:125
+msgid "Icon"
+msgstr "Иконка"
+
+#: home/models.py:138
+msgid "Social link"
+msgstr "Ссылка на соцсети"
+
+#: home/models.py:139 home/models.py:167
+msgid "Social links"
+msgstr "Ссылки на соцсети"
+
+#: home/models.py:150
+msgid "Header links"
+msgstr "Ссылки в хедере"
+
+#: home/models.py:157
+msgid "Header settings"
+msgstr "Настройки хедера"
+
+#: home/models.py:164
+msgid "Footer links"
+msgstr "Ссылки в футере"
+
+#: home/models.py:168
+msgid "Copyright"
+msgstr "Копирайт"
+
+#: home/models.py:177
+msgid "Footer settings"
+msgstr "Настройки футера"
+
+#: home/models.py:184
+msgid "Posts per page"
+msgstr "Постов на странице"
+
+#: home/models.py:185
+msgid "Max tags in cloud"
+msgstr "Максимум тегов в облаке"
+
+#: home/models.py:256 home/models.py:287
+msgid "Content"
+msgstr "Контент"
+
+#: home/models.py:265
+msgid "Cover image"
+msgstr "Обложка"
+
+#: home/models.py:298
+msgid "Standard page"
+msgstr ""
+
+#: home/models.py:299
+msgid "Standard pages"
+msgstr ""
+
+#: home/templates/home/blog_page.html:13
+msgid "Back to list"
+msgstr "Назад к списку"
+
+#: home/templates/home/blog_page.html:22
+msgid "Tags:"
+msgstr "Теги:"
+
+#: home/templates/home/blog_page.html:40
+msgid "Page is empty."
+msgstr "Страница пустая."
+
+#: home/templates/home/home_page.html:38
+msgid "Clear filter"
+msgstr "Сбросить фильтр"
+
+#: home/templates/home/home_page.html:64
+msgid "Read more"
+msgstr "Читать далее"
+
+#: home/templates/home/home_page.html:72
+msgid "Back"
+msgstr "Назад"
+
+#: home/templates/home/home_page.html:74
+#, python-format
+msgid "Page %(number)s of %(total)s"
+msgstr "Страница %(number)s из %(total)s"
+
+#: home/templates/home/home_page.html:76
+msgid "Next"
+msgstr "Вперёд"
+
+#: home/templates/home/home_page.html:82
+msgid "No posts yet."
+msgstr "Пока нет публикаций."
+
+#~ msgid "Tag cloud:"
+#~ msgstr "Облако тегов:"

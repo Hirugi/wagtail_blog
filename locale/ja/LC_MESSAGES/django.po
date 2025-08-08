@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wagtail_blog_min\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-08 16:50+0900\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: Auto <auto@example.com>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/templates/includes/header.html:6
+msgid "Blog"
+msgstr "ブログ"
+
+#: app/templates/includes/header.html:56
+msgid "Search"
+msgstr ""
+
+#: home/models.py:26 home/models.py:37
+msgid "Image"
+msgstr "画像"
+
+#: home/models.py:26
+msgid "Images"
+msgstr "画像一覧"
+
+#: home/models.py:30
+msgid "Image carousel"
+msgstr "画像カルーセル"
+
+#: home/models.py:42
+msgid "Alternative text"
+msgstr "記述テキスト"
+
+#: home/models.py:43
+msgid "Don't downscale on upload"
+msgstr "アップロード時に縮小しない"
+
+#: home/models.py:111
+msgid "Navigation link"
+msgstr "ナビゲーションリンク"
+
+#: home/models.py:112
+msgid "Navigation links"
+msgstr "ナビゲーションリンク"
+
+#: home/models.py:125
+msgid "Icon"
+msgstr "アイコン"
+
+#: home/models.py:138
+msgid "Social link"
+msgstr "ソーシャルリンク"
+
+#: home/models.py:139 home/models.py:167
+msgid "Social links"
+msgstr "ソーシャルリンク"
+
+#: home/models.py:150
+msgid "Header links"
+msgstr "ヘッダーリンク"
+
+#: home/models.py:157
+msgid "Header settings"
+msgstr "ヘッダー設定"
+
+#: home/models.py:164
+msgid "Footer links"
+msgstr "フッターリンク"
+
+#: home/models.py:168
+msgid "Copyright"
+msgstr "著作権"
+
+#: home/models.py:177
+msgid "Footer settings"
+msgstr "フッター設定"
+
+#: home/models.py:184
+msgid "Posts per page"
+msgstr "ページあたりの投稿数"
+
+#: home/models.py:185
+msgid "Max tags in cloud"
+msgstr "タグクラウドの最大数"
+
+#: home/models.py:256 home/models.py:287
+msgid "Content"
+msgstr "コンテンツ"
+
+#: home/models.py:265
+msgid "Cover image"
+msgstr "カバー画像"
+
+#: home/models.py:298
+msgid "Standard page"
+msgstr ""
+
+#: home/models.py:299
+msgid "Standard pages"
+msgstr ""
+
+#: home/templates/home/blog_page.html:13
+msgid "Back to list"
+msgstr "一覧に戻る"
+
+#: home/templates/home/blog_page.html:22
+msgid "Tags:"
+msgstr ""
+
+#: home/templates/home/blog_page.html:40
+msgid "Page is empty."
+msgstr "ページは空です。"
+
+#: home/templates/home/home_page.html:38
+msgid "Clear filter"
+msgstr "フィルターを解除"
+
+#: home/templates/home/home_page.html:64
+msgid "Read more"
+msgstr "続きを読む"
+
+#: home/templates/home/home_page.html:72
+msgid "Back"
+msgstr "戻る"
+
+#: home/templates/home/home_page.html:74
+#, python-format
+msgid "Page %(number)s of %(total)s"
+msgstr "ページ %(number)s / %(total)s"
+
+#: home/templates/home/home_page.html:76
+msgid "Next"
+msgstr "次へ"
+
+#: home/templates/home/home_page.html:82
+msgid "No posts yet."
+msgstr "投稿はまだありません。"
+
+#~ msgid "Tag cloud:"
+#~ msgstr "タグクラウド:"

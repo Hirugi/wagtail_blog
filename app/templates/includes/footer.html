@@ -1,0 +1,49 @@
+{% load i18n i18n_extras wagtailimages_tags %}
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    {% get_current_language as LANGUAGE_CODE %}
+    {% with footer=settings.home.FooterSettings %}
+      <div class="footer-top">
+        <div class="footer-links">
+          {% if footer and footer.footer_links %}
+            <ul class="footer-links__list">
+              {% for item in footer.footer_links %}
+                {% with link=item.value|localized_snippet:LANGUAGE_CODE %}
+                  {% if link.url|slice:":1" == "/" and link.url|slice:"0:4" != "/en/" and link.url|slice:"0:4" != "/ru/" and link.url|slice:"0:4" != "/ja/" %}
+                    <li class="footer-links__item"><a href="/{{ LANGUAGE_CODE }}{{ link.url }}">{{ link.label }}</a></li>
+                  {% else %}
+                    <li class="footer-links__item"><a href="{{ link.url }}">{{ link.label }}</a></li>
+                  {% endif %}
+                {% endwith %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+        <div class="social-links">
+          {% if footer and footer.social_links %}
+            {% for item in footer.social_links %}
+              {% with s=item.value|localized_snippet:LANGUAGE_CODE %}
+                {% if s.url|slice:":1" == "/" and s.url|slice:"0:4" != "/en/" and s.url|slice:"0:4" != "/ru/" and s.url|slice:"0:4" != "/ja/" %}
+                  <a href="/{{ LANGUAGE_CODE }}{{ s.url }}" class="social-links__item" target="_blank" rel="noopener noreferrer">
+                    {% if s.icon %}{% image s.icon fill-20x20 class="social-icon" %}{% endif %}
+                    {{ s.label }}
+                  </a>
+                {% else %}
+                  <a href="{{ s.url }}" class="social-links__item" target="_blank" rel="noopener noreferrer">
+                    {% if s.icon %}{% image s.icon fill-20x20 class="social-icon" %}{% endif %}
+                    {{ s.label }}
+                  </a>
+                {% endif %}
+              {% endwith %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="copyright">{% if footer and footer.copyright %}{{ footer.copyright }}{% else %}&copy; {% now "Y" %}{% endif %}</div>
+      </div>
+    {% endwith %}
+  </div>
+</footer>
+
