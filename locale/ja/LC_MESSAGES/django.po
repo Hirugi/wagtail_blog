@@ -19,6 +19,12 @@ msgstr "ブログ"
 msgid "Search"
 msgstr ""
 
+#: app/templates/includes/header.html:58
+msgid "Select language"
+msgstr "言語を選択"
+
+
+
 #: home/models.py:26 home/models.py:37
 msgid "Image"
 msgstr "画像"
@@ -111,15 +117,15 @@ msgstr ""
 msgid "Standard pages"
 msgstr ""
 
-#: home/templates/home/blog_page.html:21
+#: home/templates/home/blog_page.html:28
 msgid "Back to list"
 msgstr "一覧に戻る"
 
-#: home/templates/home/blog_page.html:33
+#: home/templates/home/blog_page.html:40
 msgid "Tags:"
 msgstr ""
 
-#: home/templates/home/blog_page.html:45
+#: home/templates/home/blog_page.html:52
 msgid "Page is empty."
 msgstr "ページは空です。"
 

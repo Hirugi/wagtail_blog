@@ -26,13 +26,16 @@
     </nav>
     <div class="header-right">
       <div class="lang-switcher">
+        <div class="lang-switcher__label">
+          <span class="lang-switcher__text">🌐</span>
+        </div>
         <form action="{% url 'set_language' %}" method="post">
           {% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">
           {% with current_page=page %}
             {% if current_page and current_page|page_model == 'BlogPage' %}
               {% with codes=current_page|translation_codes %}
-                <select name="language" onchange="this.form.submit()">
+                <select name="language" onchange="this.form.submit()" title="{% trans 'Select language' %}">
                   <option value="{{ LANGUAGE_CODE }}" selected hidden>{{ LANGUAGE_CODE|lang_label }}</option>
                   {% for code in codes %}
                     {% if code != LANGUAGE_CODE %}
@@ -42,7 +45,7 @@
                 </select>
               {% endwith %}
             {% else %}
-              <select name="language" onchange="this.form.submit()">
+              <select name="language" onchange="this.form.submit()" title="{% trans 'Select language' %}">
                 {% for code in 'ru,en,ja'|cut:',' %}{% endfor %}
                 <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>{{ 'ru'|lang_label }}</option>
                 <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>{{ 'en'|lang_label }}</option>
