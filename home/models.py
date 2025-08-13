@@ -1,7 +1,9 @@
+import hashlib
 from io import BytesIO
 
 from PIL import Image, ImageOps
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
@@ -243,7 +245,53 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('BlogPage', related_name='tagged_items', on_delete=models.CASCADE)
 
 
-class BlogPage(Page):
+class PageBase(Page):
+    views = models.IntegerField(_('Views'), default=0)
+
+    promote_panels = Page.promote_panels + [
+        FieldPanel('views', read_only=True),
+    ]
+
+    @staticmethod
+    def _get_client_ip(request):
+        xff = request.META.get('HTTP_X_FORWARDED_FOR')
+        if xff:
+            ip = xff.split(',')[0].strip()
+        else:
+            ip = request.META.get('REMOTE_ADDR', '')
+        return ip or ''
+
+    def _record_unique_view(self, request, ttl_seconds: int = 24 * 60 * 60):
+        """
+        Increment page.views only once per unique viewer within the TTL window.
+        Uniqueness is based on client IP + User-Agent hash.
+        """
+        if getattr(request, 'is_preview', False) or request.method != 'GET':
+            return
+
+        ua = (request.META.get('HTTP_USER_AGENT') or '').strip()
+        ip = self._get_client_ip(request)
+        raw = f"{ip}|{ua}".encode('utf-8')
+        viewer_hash = hashlib.sha256(raw).hexdigest()[:32]
+        cache_key = f"pageview:{self.id}:{viewer_hash}"
+
+        if cache.add(cache_key, True, timeout=ttl_seconds):
+            self.__class__.objects.filter(id=self.id).update(views=models.F('views') + 1)
+            try:
+                self.views += 1
+            except Exception:
+                pass
+
+    def serve(self, request, *args, **kwargs):
+        response = super().serve(request, *args, **kwargs)
+        self._record_unique_view(request)
+        return response
+
+    class Meta:
+        abstract = True
+
+
+class BlogPage(PageBase):
     body = StreamField(
         [
             ('rich_text', RichTextBlock()),
@@ -281,7 +329,7 @@ class BlogPage(Page):
     ]
 
 
-class StandardPage(Page):
+class StandardPage(PageBase):
     body = StreamField(
         [
             ('rich_text', RichTextBlock()),
@@ -293,7 +341,6 @@ class StandardPage(Page):
         blank=True,
         verbose_name=_("Content")
     )
-
     content_panels = Page.content_panels + [
         FieldPanel('body'),
     ]
