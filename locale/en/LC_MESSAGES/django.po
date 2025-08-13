@@ -150,3 +150,7 @@ msgstr "No posts yet."
 
 #~ msgid "Tag cloud:"
 #~ msgstr "Tag cloud:"
+
+#: home/models.py:259
+msgid "Views"
+msgstr "Views"

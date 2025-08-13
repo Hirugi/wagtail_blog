@@ -156,3 +156,7 @@ msgstr "投稿はまだありません。"
 
 #~ msgid "Tag cloud:"
 #~ msgstr "タグクラウド:"
+
+#: home/models.py:259
+msgid "Views"
+msgstr "視聴回数"

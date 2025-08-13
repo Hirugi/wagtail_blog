@@ -252,6 +252,15 @@ class PageBase(Page):
         FieldPanel('views', read_only=True),
     ]
 
+    def get_admin_display_title(self):
+        base = super().get_admin_display_title()
+        # Show views in the explorer listing for quick reference
+        try:
+            views_str = f" | {self.views} " + str(_('Views')).lower()
+        except Exception:
+            views_str = ""
+        return f"{base}{views_str}"
+
     @staticmethod
     def _get_client_ip(request):
         xff = request.META.get('HTTP_X_FORWARDED_FOR')
