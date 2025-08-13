@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-08 16:50+0900\n"
+"POT-Creation-Date: 2025-08-13 10:25+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: en\n"
@@ -87,7 +87,7 @@ msgstr ""
 msgid "Max tags in cloud"
 msgstr ""
 
-#: home/models.py:256 home/models.py:287
+#: home/models.py:256 home/models.py:294
 msgid "Content"
 msgstr ""
 
@@ -95,23 +95,31 @@ msgstr ""
 msgid "Cover image"
 msgstr ""
 
-#: home/models.py:298
+#: home/models.py:270
+msgid "Disclaimer"
+msgstr ""
+
+#: home/models.py:271
+msgid "Disclaimer text displayed at the top of the post (will not appear in post excerpts)"
+msgstr ""
+
+#: home/models.py:305
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:299
+#: home/models.py:306
 msgid "Standard pages"
 msgstr ""
 
-#: home/templates/home/blog_page.html:13
+#: home/templates/home/blog_page.html:21
 msgid "Back to list"
 msgstr "Back to list"
 
-#: home/templates/home/blog_page.html:22
+#: home/templates/home/blog_page.html:33
 msgid "Tags:"
 msgstr "Tags:"
 
-#: home/templates/home/blog_page.html:40
+#: home/templates/home/blog_page.html:45
 msgid "Page is empty."
 msgstr "Page is empty."
 

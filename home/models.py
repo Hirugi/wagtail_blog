@@ -265,10 +265,17 @@ class BlogPage(Page):
         verbose_name=_('Cover image')
     )
 
+    disclaimer = models.TextField(
+        blank=True,
+        verbose_name=_('Disclaimer'),
+        help_text=_('Disclaimer text displayed at the top of the post (will not appear in post excerpts)')
+    )
+
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('cover_image'),
+        FieldPanel('disclaimer'),
         FieldPanel('body'),
         FieldPanel('tags'),
     ]

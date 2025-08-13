@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailimages_tags i18n %}
+{% load static wagtailimages_tags i18n wagtailcore_tags %}
 
 {% block body_class %}blog_page{% endblock %}
 
@@ -18,13 +18,16 @@
 {% endif %}
 
 <div class="blog-post-container">
-    <a href="/" class="back-link">&larr; {% trans "Back to list" %}</a>
+    <a href="{% pageurl page.get_parent %}" class="back-link">&larr; {% trans "Back to list" %}</a>
     <h1 class="post-page-title">{{ page.title }}</h1>
     <span class="post-page-date">
         {% if page.first_published_at %}
             {{ page.first_published_at|date:"j F, Y" }}
         {% endif %}
     </span>
+    {% if page.disclaimer %}
+        <div class="post-disclaimer">{{ page.disclaimer }}</div>
+    {% endif %}
     {% if page.tags.all %}
         <div class="post-tags">
             <span class="tag-cloud-label">{% trans "Tags:" %}</span>
