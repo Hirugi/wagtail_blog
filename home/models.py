@@ -20,6 +20,7 @@ from wagtail.images import get_image_model_string
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.models import AbstractImage, AbstractRendition, Image as WagtailImage
 from wagtail.models import Page, TranslatableMixin
+from wagtail.search import index
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.snippets.models import register_snippet
 
@@ -337,6 +338,11 @@ class BlogPage(PageBase):
         FieldPanel('tags'),
     ]
 
+    search_fields = Page.search_fields + [
+        index.SearchField('title', partial_match=True),
+        index.SearchField('body', partial_match=True),
+    ]
+
 
 class StandardPage(PageBase):
     body = StreamField(
@@ -352,6 +358,11 @@ class StandardPage(PageBase):
     )
     content_panels = Page.content_panels + [
         FieldPanel('body'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('title', partial_match=True),
+        index.SearchField('body', partial_match=True),
     ]
 
     parent_page_types = ['home.HomePage', 'home.StandardPage']
