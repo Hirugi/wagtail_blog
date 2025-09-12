@@ -4,7 +4,7 @@
     {% for img in self.images %}
       {% image img width-1400 as rendition %}
       <div class="carousel__slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.counter0 }}">
-        <img src="{{ rendition.url }}" alt="" class="carousel__image" data-zoomable loading="lazy">
+        <img src="{{ rendition.url }}" alt="" class="carousel__image" data-zoomable>
       </div>
     {% endfor %}
   </div>
