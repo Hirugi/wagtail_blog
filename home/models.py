@@ -257,7 +257,9 @@ class HomePage(Page):
             months_qs = BlogPage.objects.filter(trip_date__year=trip_year, trip_date__isnull=False)
         else:
             months_qs = BlogPage.objects.filter(trip_date__isnull=False)
-        months_set = sorted({d.trip_date.month for d in months_qs if d.trip_date and d.trip_date.month})
+        months_set = sorted(
+            {int(m) for m in months_qs.values_list('trip_date__month', flat=True) if m}
+        )
 
         context['trip_years'] = trip_years
         context['trip_months'] = months_set
