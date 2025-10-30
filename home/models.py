@@ -189,17 +189,25 @@ class HomePage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
-        # Parse selected tags from query (?tags=tag1,tag2)
         tags_param = request.GET.get('tags', '') or ''
         selected_tags = [t.strip() for t in tags_param.split(',') if t.strip()] if tags_param else []
 
         lang_code = getattr(request, 'LANGUAGE_CODE', None)
-        all_posts_qs = BlogPage.objects.live().public().order_by('-first_published_at')
+        all_posts_qs = BlogPage.objects.live().public()
         if lang_code:
             all_posts_qs = all_posts_qs.filter(locale__language_code=lang_code)
-        # Filter by ALL selected tags (intersection)
         for t in selected_tags:
             all_posts_qs = all_posts_qs.filter(tags__name=t)
+
+        # Trip date filtering
+        trip_year = request.GET.get('trip_year')
+        trip_month = request.GET.get('trip_month')
+        if trip_year:
+            all_posts_qs = all_posts_qs.filter(trip_date__year=trip_year)
+        if trip_month:
+            all_posts_qs = all_posts_qs.filter(trip_date__month=trip_month)
+        # Sorting: first by trip_date desc, then by first_published_at desc
+        all_posts_qs = all_posts_qs.order_by(models.F('trip_date').desc(nulls_last=True), '-first_published_at')
 
         paginator = Paginator(all_posts_qs, self.posts_per_page)
         page_number = request.GET.get('page')
@@ -226,7 +234,6 @@ class HomePage(Page):
             .order_by('-cnt', 'tags__name')
         )
         tag_names = [row['tags__name'] for row in tag_rows[: self.tags_max_display]]
-        # Ensure selected tags are visible in cloud
         for t in selected_tags:
             if t not in tag_names:
                 tag_names.append(t)
@@ -234,6 +241,16 @@ class HomePage(Page):
         context['tag_cloud'] = tag_names
         context['selected_tags'] = selected_tags
         context['selected_tags_csv'] = ','.join(selected_tags)
+
+        # Years/months for filter (existing in posts)
+        trip_years = (BlogPage.objects.filter(trip_date__isnull=False)
+            .dates('trip_date', 'year')).distinct()
+        trip_months = (BlogPage.objects.filter(trip_date__isnull=False)
+            .dates('trip_date', 'month')).distinct()
+        context['trip_years'] = trip_years
+        context['trip_months'] = trip_months
+        context['trip_year_selected'] = trip_year
+        context['trip_month_selected'] = trip_month
         return context
 
     content_panels = Page.content_panels + [
@@ -302,6 +319,12 @@ class PageBase(Page):
 
 
 class BlogPage(PageBase):
+    trip_date = models.DateField(
+        _('Trip date'),
+        blank=True,
+        null=True,
+        help_text=_('Month and year of the trip')
+    )
     body = StreamField(
         [
             ('rich_text', RichTextBlock()),
@@ -311,9 +334,8 @@ class BlogPage(PageBase):
         ],
         use_json_field=True,
         blank=True,
-        verbose_name=_("Content")
+        verbose_name=_('Content')
     )
-
     cover_image = models.ForeignKey(
         get_image_model_string(),
         null=True,
@@ -322,22 +344,19 @@ class BlogPage(PageBase):
         related_name='blogpage_cover_images',
         verbose_name=_('Cover image')
     )
-
     disclaimer = models.TextField(
         blank=True,
         verbose_name=_('Disclaimer'),
         help_text=_('Disclaimer text displayed at the top of the post (will not appear in post excerpts)')
     )
-
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-
     content_panels = Page.content_panels + [
         FieldPanel('cover_image'),
+        FieldPanel('trip_date'),
         FieldPanel('disclaimer'),
         FieldPanel('body'),
         FieldPanel('tags'),
     ]
-
     search_fields = Page.search_fields + [
         index.SearchField('title', partial_match=True),
         index.SearchField('body', partial_match=True),

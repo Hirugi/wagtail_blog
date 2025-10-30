@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 10:25+0900\n"
+"POT-Creation-Date: 2025-10-30 16:24+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: en\n"
@@ -15,99 +15,117 @@ msgstr ""
 msgid "Blog"
 msgstr "Blog"
 
-#: app/templates/includes/header.html:56
+#: app/templates/includes/header.html:38 app/templates/includes/header.html:48
+msgid "Select language"
+msgstr ""
+
+#: app/templates/includes/header.html:59
 msgid "Search"
 msgstr "Search"
 
-#: home/models.py:26 home/models.py:37
+#: home/models.py:29 home/models.py:40
 msgid "Image"
 msgstr ""
 
-#: home/models.py:26
+#: home/models.py:29
 msgid "Images"
 msgstr ""
 
-#: home/models.py:30
+#: home/models.py:33
 msgid "Image carousel"
 msgstr ""
 
-#: home/models.py:42
+#: home/models.py:45
 msgid "Alternative text"
 msgstr ""
 
-#: home/models.py:43
+#: home/models.py:46
 msgid "Don't downscale on upload"
 msgstr ""
 
-#: home/models.py:111
+#: home/models.py:114
 msgid "Navigation link"
 msgstr ""
 
-#: home/models.py:112
+#: home/models.py:115
 msgid "Navigation links"
 msgstr ""
 
-#: home/models.py:125
+#: home/models.py:128
 msgid "Icon"
 msgstr ""
 
-#: home/models.py:138
+#: home/models.py:141
 msgid "Social link"
 msgstr ""
 
-#: home/models.py:139 home/models.py:167
+#: home/models.py:142 home/models.py:170
 msgid "Social links"
 msgstr ""
 
-#: home/models.py:150
+#: home/models.py:153
 msgid "Header links"
 msgstr ""
 
-#: home/models.py:157
+#: home/models.py:160
 msgid "Header settings"
 msgstr ""
 
-#: home/models.py:164
+#: home/models.py:167
 msgid "Footer links"
 msgstr ""
 
-#: home/models.py:168
+#: home/models.py:171
 msgid "Copyright"
 msgstr ""
 
-#: home/models.py:177
+#: home/models.py:180
 msgid "Footer settings"
 msgstr ""
 
-#: home/models.py:184
+#: home/models.py:187
 msgid "Posts per page"
 msgstr ""
 
-#: home/models.py:185
+#: home/models.py:188
 msgid "Max tags in cloud"
 msgstr ""
 
-#: home/models.py:256 home/models.py:294
+#: home/models.py:267 home/models.py:277
+msgid "Views"
+msgstr "Views"
+
+#: home/models.py:323 home/templates/home/home_page.html:23
+msgid "Trip date"
+msgstr ""
+
+#: home/models.py:326
+msgid "Month and year of the trip"
+msgstr ""
+
+#: home/models.py:337 home/models.py:376
 msgid "Content"
 msgstr ""
 
-#: home/models.py:265
+#: home/models.py:345
 msgid "Cover image"
 msgstr ""
 
-#: home/models.py:270
+#: home/models.py:349
 msgid "Disclaimer"
 msgstr ""
 
-#: home/models.py:271
-msgid "Disclaimer text displayed at the top of the post (will not appear in post excerpts)"
+#: home/models.py:350
+msgid ""
+"Disclaimer text displayed at the top of the post (will not appear in post "
+"excerpts)"
 msgstr ""
 
-#: home/models.py:305
+#: home/models.py:391
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:306
+#: home/models.py:392
 msgid "Standard pages"
 msgstr ""
 
@@ -115,42 +133,57 @@ msgstr ""
 msgid "Back to list"
 msgstr "Back to list"
 
-#: home/templates/home/blog_page.html:33
+#: home/templates/home/blog_page.html:30
+msgid "Trip date:"
+msgstr ""
+
+#: home/templates/home/blog_page.html:39
 msgid "Tags:"
 msgstr "Tags:"
 
-#: home/templates/home/blog_page.html:45
+#: home/templates/home/blog_page.html:51
 msgid "Page is empty."
 msgstr "Page is empty."
 
-#: home/templates/home/home_page.html:38
+#: home/templates/home/home_page.html:26
+msgid "Any year"
+msgstr ""
+
+#: home/templates/home/home_page.html:35
+msgid "Any month"
+msgstr ""
+
+#: home/templates/home/home_page.html:48
+msgid "Filter"
+msgstr ""
+
+#: home/templates/home/home_page.html:73
 msgid "Clear filter"
 msgstr "Clear filter"
 
-#: home/templates/home/home_page.html:64
+#: home/templates/home/home_page.html:99
 msgid "Read more"
 msgstr "Read more"
 
-#: home/templates/home/home_page.html:72
+#: home/templates/home/home_page.html:108
 msgid "Back"
 msgstr "Back"
 
-#: home/templates/home/home_page.html:74
-#, python-format
-msgid "Page %(number)s of %(total)s"
+#: home/templates/home/home_page.html:110
+#, fuzzy, python-format
+#| msgid "Page %(number)s of %(total)s"
+msgid ""
+"\n"
+"                        Page %(number)s of %(total)s"
 msgstr "Page %(number)s of %(total)s"
 
-#: home/templates/home/home_page.html:76
+#: home/templates/home/home_page.html:114
 msgid "Next"
 msgstr "Next"
 
-#: home/templates/home/home_page.html:82
+#: home/templates/home/home_page.html:121
 msgid "No posts yet."
 msgstr "No posts yet."
 
 #~ msgid "Tag cloud:"
 #~ msgstr "Tag cloud:"
-
-#: home/models.py:259
-msgid "Views"
-msgstr "Views"

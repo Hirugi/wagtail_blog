@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 10:25+0900\n"
+"POT-Creation-Date: 2025-10-30 16:24+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -15,148 +15,177 @@ msgstr ""
 msgid "Blog"
 msgstr "ブログ"
 
-#: app/templates/includes/header.html:56
-msgid "Search"
-msgstr ""
-
-#: app/templates/includes/header.html:58
+#: app/templates/includes/header.html:38 app/templates/includes/header.html:48
 msgid "Select language"
 msgstr "言語を選択"
 
+#: app/templates/includes/header.html:59
+msgid "Search"
+msgstr ""
 
-
-#: home/models.py:26 home/models.py:37
+#: home/models.py:29 home/models.py:40
 msgid "Image"
 msgstr "画像"
 
-#: home/models.py:26
+#: home/models.py:29
 msgid "Images"
 msgstr "画像一覧"
 
-#: home/models.py:30
+#: home/models.py:33
 msgid "Image carousel"
 msgstr "画像カルーセル"
 
-#: home/models.py:42
+#: home/models.py:45
 msgid "Alternative text"
 msgstr "記述テキスト"
 
-#: home/models.py:43
+#: home/models.py:46
 msgid "Don't downscale on upload"
 msgstr "アップロード時に縮小しない"
 
-#: home/models.py:111
+#: home/models.py:114
 msgid "Navigation link"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:112
+#: home/models.py:115
 msgid "Navigation links"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:125
+#: home/models.py:128
 msgid "Icon"
 msgstr "アイコン"
 
-#: home/models.py:138
+#: home/models.py:141
 msgid "Social link"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:139 home/models.py:167
+#: home/models.py:142 home/models.py:170
 msgid "Social links"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:150
+#: home/models.py:153
 msgid "Header links"
 msgstr "ヘッダーリンク"
 
-#: home/models.py:157
+#: home/models.py:160
 msgid "Header settings"
 msgstr "ヘッダー設定"
 
-#: home/models.py:164
+#: home/models.py:167
 msgid "Footer links"
 msgstr "フッターリンク"
 
-#: home/models.py:168
+#: home/models.py:171
 msgid "Copyright"
 msgstr "著作権"
 
-#: home/models.py:177
+#: home/models.py:180
 msgid "Footer settings"
 msgstr "フッター設定"
 
-#: home/models.py:184
+#: home/models.py:187
 msgid "Posts per page"
 msgstr "ページあたりの投稿数"
 
-#: home/models.py:185
+#: home/models.py:188
 msgid "Max tags in cloud"
 msgstr "タグクラウドの最大数"
 
-#: home/models.py:256 home/models.py:294
+#: home/models.py:267 home/models.py:277
+msgid "Views"
+msgstr "視聴回数"
+
+#: home/models.py:323 home/templates/home/home_page.html:23
+msgid "Trip date"
+msgstr "旅行日"
+
+#: home/models.py:326
+msgid "Month and year of the trip"
+msgstr "旅行の月と年"
+
+#: home/models.py:337 home/models.py:376
 msgid "Content"
 msgstr "コンテンツ"
 
-#: home/models.py:265
+#: home/models.py:345
 msgid "Cover image"
 msgstr "カバー画像"
 
-#: home/models.py:270
+#: home/models.py:349
 msgid "Disclaimer"
 msgstr "免責事項"
 
-#: home/models.py:271
-msgid "Disclaimer text displayed at the top of the post (will not appear in post excerpts)"
+#: home/models.py:350
+msgid ""
+"Disclaimer text displayed at the top of the post (will not appear in post "
+"excerpts)"
 msgstr "投稿の上部に表示される免責事項テキスト（投稿の要約には表示されません）"
 
-#: home/models.py:305
+#: home/models.py:391
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:306
+#: home/models.py:392
 msgid "Standard pages"
 msgstr ""
 
-#: home/templates/home/blog_page.html:28
+#: home/templates/home/blog_page.html:21
 msgid "Back to list"
 msgstr "一覧に戻る"
 
-#: home/templates/home/blog_page.html:40
+#: home/templates/home/blog_page.html:30
+#, fuzzy
+#| msgid "Trip date"
+msgid "Trip date:"
+msgstr "旅行日"
+
+#: home/templates/home/blog_page.html:39
 msgid "Tags:"
 msgstr ""
 
-#: home/templates/home/blog_page.html:52
+#: home/templates/home/blog_page.html:51
 msgid "Page is empty."
 msgstr "ページは空です。"
 
-#: home/templates/home/home_page.html:38
+#: home/templates/home/home_page.html:26
+msgid "Any year"
+msgstr ""
+
+#: home/templates/home/home_page.html:35
+msgid "Any month"
+msgstr ""
+
+#: home/templates/home/home_page.html:48
+msgid "Filter"
+msgstr ""
+
+#: home/templates/home/home_page.html:73
 msgid "Clear filter"
 msgstr "フィルターを解除"
 
-#: home/templates/home/home_page.html:64
+#: home/templates/home/home_page.html:99
 msgid "Read more"
 msgstr "続きを読む"
 
-#: home/templates/home/home_page.html:72
+#: home/templates/home/home_page.html:108
 msgid "Back"
 msgstr "戻る"
 
-#: home/templates/home/home_page.html:74
-#, python-format
-msgid "Page %(number)s of %(total)s"
+#: home/templates/home/home_page.html:110
+#, fuzzy, python-format
+#| msgid "Page %(number)s of %(total)s"
+msgid ""
+"\n"
+"                        Page %(number)s of %(total)s"
 msgstr "ページ %(number)s / %(total)s"
 
-#: home/templates/home/home_page.html:76
+#: home/templates/home/home_page.html:114
 msgid "Next"
 msgstr "次へ"
 
-#: home/templates/home/home_page.html:82
+#: home/templates/home/home_page.html:121
 msgid "No posts yet."
 msgstr "投稿はまだありません。"
 
 #~ msgid "Tag cloud:"
 #~ msgstr "タグクラウド:"
-
-#: home/models.py:259
-msgid "Views"
-msgstr "視聴回数"
