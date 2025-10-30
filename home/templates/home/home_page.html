@@ -34,8 +34,8 @@
                 <select name="trip_month" class="tag-chip" onchange="this.form.submit()">
                     <option value="">{% trans "Any month" %}</option>
                     {% for m in trip_months %}
-                        <option value="{{ m.month }}"
-                                {% if m.month|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|date:"F" }}</option>
+                        <option value="{{ m }}"
+                                {% if m|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|get_month_name:LANGUAGE_CODE }}</option>
                     {% endfor %}
                 </select>
             </label>

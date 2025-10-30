@@ -1,6 +1,7 @@
 from django import template
 from django.utils.html import strip_tags
 from wagtail.models import Locale
+import calendar
 
 register = template.Library()
 
@@ -117,5 +118,26 @@ def exclude(seq, item):
         return [x for x in seq if x != item]
     except Exception:
         return seq
+
+
+@register.filter
+def get_month_name(month_number, lang='en'):
+    try:
+        month_number = int(month_number)
+        if lang.startswith('ru'):
+            # Russian month names
+            return [
+                '', 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+            ][month_number]
+        elif lang.startswith('ja'):
+            # Japanese month names
+            return [
+                '', '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'
+            ][month_number]
+        else:
+            return calendar.month_name[month_number]
+    except Exception:
+        return ''
 
 
