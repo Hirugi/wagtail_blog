@@ -242,13 +242,25 @@ class HomePage(Page):
         context['selected_tags'] = selected_tags
         context['selected_tags_csv'] = ','.join(selected_tags)
 
-        # Years/months for filter (existing in posts)
-        trip_years = (BlogPage.objects.filter(trip_date__isnull=False)
-            .dates('trip_date', 'year')).distinct()
-        trip_months = (BlogPage.objects.filter(trip_date__isnull=False)
-            .dates('trip_date', 'month')).distinct()
+        # Trip date filter logic:
+        #   - trip_years: all years present in posts with trip_date.
+        #   - trip_months: if a year is selected, all unique months in that year present in posts;
+        #                  otherwise, all unique months present across all posts (each month only once).
+        #   - trip_months is always a list of unique months (integers), sorted ascending.
+
+        trip_years = (
+            BlogPage.objects.filter(trip_date__isnull=False)
+            .dates('trip_date', 'year')
+            .distinct()
+        )
+        if trip_year:
+            months_qs = BlogPage.objects.filter(trip_date__year=trip_year, trip_date__isnull=False)
+        else:
+            months_qs = BlogPage.objects.filter(trip_date__isnull=False)
+        months_set = sorted({d.trip_date.month for d in months_qs if d.trip_date and d.trip_date.month})
+
         context['trip_years'] = trip_years
-        context['trip_months'] = trip_months
+        context['trip_months'] = months_set
         context['trip_year_selected'] = trip_year
         context['trip_month_selected'] = trip_month
         return context
