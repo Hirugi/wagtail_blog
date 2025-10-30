@@ -141,7 +141,7 @@ msgstr "旅行日"
 
 #: home/templates/home/blog_page.html:39
 msgid "Tags:"
-msgstr ""
+msgstr "タグ"
 
 #: home/templates/home/blog_page.html:51
 msgid "Page is empty."
@@ -149,15 +149,15 @@ msgstr "ページは空です。"
 
 #: home/templates/home/home_page.html:26
 msgid "Any year"
-msgstr ""
+msgstr "どの年でも"
 
 #: home/templates/home/home_page.html:35
 msgid "Any month"
-msgstr ""
+msgstr "どの月でも"
 
 #: home/templates/home/home_page.html:48
 msgid "Filter"
-msgstr ""
+msgstr "フィルター"
 
 #: home/templates/home/home_page.html:73
 msgid "Clear filter"

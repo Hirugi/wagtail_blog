@@ -152,15 +152,15 @@ msgstr "Страница пустая."
 
 #: home/templates/home/home_page.html:26
 msgid "Any year"
-msgstr ""
+msgstr "Любой год"
 
 #: home/templates/home/home_page.html:35
 msgid "Any month"
-msgstr ""
+msgstr "Любой месяц"
 
 #: home/templates/home/home_page.html:48
 msgid "Filter"
-msgstr ""
+msgstr "Фильтр"
 
 #: home/templates/home/home_page.html:73
 msgid "Clear filter"
