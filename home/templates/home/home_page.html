@@ -18,108 +18,113 @@
 
 {% block content %}
     <div class="blog-list">
-        <h1>{{ page.title }}</h1>
-        <form method="get" class="trip-date-filter">
-            <label><span class="trip-date-filter-label">{% trans "Trip date" %}</span></label>
-            <label>
-                <select name="trip_year" class="tag-chip" onchange="this.form.submit()">
-                    <option value="">{% trans "Any year" %}</option>
-                    {% for y in trip_years %}
-                        <option value="{{ y.year }}"
-                                {% if y.year|stringformat:"s" == trip_year_selected %}selected{% endif %}>{{ y.year }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            <label>
-                <select name="trip_month" class="tag-chip" onchange="this.form.submit()">
-                    <option value="">{% trans "Any month" %}</option>
-                    {% for m in trip_months %}
-                        <option value="{{ m }}"
-                                {% if m|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|get_month_name:LANGUAGE_CODE }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            {% for key, value in request.GET.items %}
-                {% if key != "trip_year" and key != "trip_month" %}
-                    <input type="hidden" name="{{ key }}" value="{{ value }}">
-                {% endif %}
-            {% endfor %}
-            <noscript>
-                <button type="submit" class="tag-chip">{% trans "Filter" %}</button>
-            </noscript>
-        </form>
-        <div class="blog-list-posts-sep"></div>
-        {% if tag_cloud %}
-            <div class="tag-cloud">
-                {#            <span class="tag-cloud-label" style="width:100%">{% trans "Tag cloud:" %}</span>#}
-                {% for tag in tag_cloud %}
-                    {% if tag in selected_tags %}
-                        {% with new_list=selected_tags|exclude:tag %}
-                            {% with new_csv=new_list|join:',' %}
-                                <a href="?tags={{ new_csv }}" class="tag-chip is-active">#{{ tag }}</a>
-                            {% endwith %}
+    <h1>{{ page.title }}</h1>
+    <form method="get" class="trip-date-filter">
+        <label><span class="trip-date-filter-label">{% trans "Trip date" %}</span></label>
+        <label>
+            <select name="trip_year" class="tag-chip" onchange="this.form.submit()">
+                <option value="">{% trans "Any year" %}</option>
+                {% for y in trip_years %}
+                    <option value="{{ y.year }}"
+                            {% if y.year|stringformat:"s" == trip_year_selected %}selected{% endif %}>{{ y.year }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            <select name="trip_month" class="tag-chip" onchange="this.form.submit()">
+                <option value="">{% trans "Any month" %}</option>
+                {% for m in trip_months %}
+                    <option value="{{ m }}"
+                            {% if m|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|get_month_name:LANGUAGE_CODE }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        {% for key, value in request.GET.items %}
+            {% if key != "trip_year" and key != "trip_month" %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endif %}
+        {% endfor %}
+        <noscript>
+            <button type="submit" class="tag-chip">{% trans "Filter" %}</button>
+        </noscript>
+    </form>
+    <div class="blog-list-posts-sep"></div>
+    {% if tag_cloud %}
+        <div class="tag-cloud">
+            {#            <span class="tag-cloud-label" style="width:100%">{% trans "Tag cloud:" %}</span>#}
+            {% for tag in tag_cloud %}
+                {% if tag in selected_tags %}
+                    {% with new_list=selected_tags|exclude:tag %}
+                        {% with new_csv=new_list|join:',' %}
+                            <a href="?tags={{ new_csv }}" class="tag-chip is-active">#{{ tag }}</a>
+                        {% endwith %}
+                    {% endwith %}
+                {% else %}
+                    {% if selected_tags_csv %}
+                        {% with new_csv=selected_tags_csv|add:','|add:tag %}
+                            <a href="?tags={{ new_csv }}" class="tag-chip">#{{ tag }}</a>
                         {% endwith %}
                     {% else %}
-                        {% if selected_tags_csv %}
-                            {% with new_csv=selected_tags_csv|add:','|add:tag %}
-                                <a href="?tags={{ new_csv }}" class="tag-chip">#{{ tag }}</a>
-                            {% endwith %}
-                        {% else %}
-                            <a href="?tags={{ tag }}" class="tag-chip">#{{ tag }}</a>
-                        {% endif %}
+                        <a href="?tags={{ tag }}" class="tag-chip">#{{ tag }}</a>
                     {% endif %}
-                {% endfor %}
-                {% if selected_tags %}
-                    <a href="{{ page.url }}" class="tag-chip">{% trans "Clear filter" %}</a>
+                {% endif %}
+            {% endfor %}
+            {% if selected_tags %}
+                <a href="{{ page.url }}" class="tag-chip">{% trans "Clear filter" %}</a>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if latest_posts %}
+        {% for post in latest_posts %}
+            <div class="post-card">
+            {% if post.cover_image %}
+                {% image post.cover_image fill-1200x600 as cover %}
+                <a href="{{ post.url }}" class="post-media">
+                    <img class="post-media-img" src="{{ cover.url }}" alt="{{ post.title }}">
+                </a>
+            {% endif %}
+            <div class="post-content">
+                {% if post.trip_date %}
+                    <span class="post-date">
+                        {% trans "Trip date" %}:
+                        {{ post.trip_date|date:"F Y" }}
+                     </span>
+                {% endif %}
+                <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+                {% if post.search_description %}
+                    <div class="post-excerpt">{{ post.search_description }}</div>
+                {% else %}
+                    <div class="post-excerpt">{{ post|post_excerpt:200 }}</div>
+                {% endif %}
+                <div class="post-card-footer">
+                         <span class="post-pubdate">
+                             {% if post.first_published_at %}
+                                 {{ post.first_published_at|date:"j F, Y" }}
+                             {% endif %}
+                         </span>
+                    <a href="{{ post.url }}" class="read-more">{% trans "Read more" %}</a>
+                </div>
+            </div>
+        {% endfor %}
+        {% if is_paginated %}
+            <div class="pagination" style="text-align:center; margin: 20px 0 40px;">
+                {% if page_obj.has_previous %}
+                    <a class="tag-chip"
+                       href="?{% if selected_tags_csv %}tags={{ selected_tags_csv }}&{% endif %}page={{ page_obj.previous_page_number }}">« {% trans "Back" %}</a>
+                {% endif %}
+                <span class="tag-cloud-label">{% blocktrans with number=page_obj.number total=paginator.num_pages %}
+                    Page {{ number }} of {{ total }}{% endblocktrans %}</span>
+                {% if page_obj.has_next %}
+                    <a class="tag-chip"
+                       href="?{% if selected_tags_csv %}tags={{ selected_tags_csv }}&{% endif %}page={{ page_obj.next_page_number }}">{% trans "Next" %}
+                        »</a>
                 {% endif %}
             </div>
         {% endif %}
-        {% if latest_posts %}
-            {% for post in latest_posts %}
-                <div class="post-card">
-                    {% if post.cover_image %}
-                        {% image post.cover_image fill-1200x600 as cover %}
-                        <a href="{{ post.url }}" class="post-media">
-                            <img class="post-media-img" src="{{ cover.url }}" alt="{{ post.title }}">
-                        </a>
-                    {% endif %}
-                    <div class="post-content">
-                    <span class="post-date">
-                        {% if post.first_published_at %}
-                            {{ post.first_published_at|date:"j F, Y" }}
-                        {% endif %}
-                    </span>
-                        <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-                        {% if post.search_description %}
-                            <div class="post-excerpt">{{ post.search_description }}</div>
-                        {% else %}
-                            <div class="post-excerpt">{{ post|post_excerpt:200 }}</div>
-                        {% endif %}
-                        <div class="post-actions">
-                            <a href="{{ post.url }}" class="read-more">{% trans "Read more" %}</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            {% if is_paginated %}
-                <div class="pagination" style="text-align:center; margin: 20px 0 40px;">
-                    {% if page_obj.has_previous %}
-                        <a class="tag-chip"
-                           href="?{% if selected_tags_csv %}tags={{ selected_tags_csv }}&{% endif %}page={{ page_obj.previous_page_number }}">« {% trans "Back" %}</a>
-                    {% endif %}
-                    <span class="tag-cloud-label">{% blocktrans with number=page_obj.number total=paginator.num_pages %}
-                        Page {{ number }} of {{ total }}{% endblocktrans %}</span>
-                    {% if page_obj.has_next %}
-                        <a class="tag-chip"
-                           href="?{% if selected_tags_csv %}tags={{ selected_tags_csv }}&{% endif %}page={{ page_obj.next_page_number }}">{% trans "Next" %}
-                            »</a>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% else %}
-            <div class="post-card" style="padding: 28px;">
-                <p>{% trans "No posts yet." %}</p>
-            </div>
-        {% endif %}
-    </div>
+    {% else %}
+        <div class="post-card" style="padding: 28px;">
+            <p>{% trans "No posts yet." %}</p>
+        </div>
+    {% endif %}
+</div>
 {% endblock content %}

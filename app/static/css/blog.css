@@ -605,3 +605,16 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
   opacity: .90;
 }
+
+/* Post card footer with published date (left) and read-more (right) */
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+.post-pubdate {
+  font-size: 0.85rem;
+  color: #6b7785;
+}
