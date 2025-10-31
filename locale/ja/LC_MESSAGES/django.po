@@ -136,7 +136,7 @@ msgstr "一覧に戻る"
 
 #: home/templates/home/blog_page.html:39
 msgid "Tags:"
-msgstr "タグ"
+msgstr "タグ:"
 
 #: home/templates/home/blog_page.html:51
 msgid "Page is empty."
