@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-30 16:24+0900\n"
+"POT-Creation-Date: 2025-10-31 11:18+0900\n"
 "PO-Revision-Date: 2025-08-08 15:05+0900\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ru\n"
@@ -92,31 +92,32 @@ msgstr "Постов на странице"
 msgid "Max tags in cloud"
 msgstr "Максимум тегов в облаке"
 
-#: home/models.py:267 home/models.py:277
+#: home/models.py:281 home/models.py:291
 msgid "Views"
 msgstr "Просмотра(ов)"
 
-#: home/models.py:323 home/templates/home/home_page.html:23
+#: home/models.py:337 home/templates/home/blog_page.html:30
+#: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "Даты поездки"
 
-#: home/models.py:326
+#: home/models.py:340
 msgid "Month and year of the trip"
 msgstr "Месяц и год поездки"
 
-#: home/models.py:337 home/models.py:376
+#: home/models.py:351 home/models.py:390
 msgid "Content"
 msgstr "Контент"
 
-#: home/models.py:345
+#: home/models.py:359
 msgid "Cover image"
 msgstr "Обложка"
 
-#: home/models.py:349
+#: home/models.py:363
 msgid "Disclaimer"
 msgstr "Дисклеймер"
 
-#: home/models.py:350
+#: home/models.py:364
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
@@ -124,23 +125,17 @@ msgstr ""
 "Текст дисклеймера, отображаемый в начале поста (не появится в кратком "
 "описании)"
 
-#: home/models.py:391
+#: home/models.py:405
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:392
+#: home/models.py:406
 msgid "Standard pages"
 msgstr ""
 
 #: home/templates/home/blog_page.html:21
 msgid "Back to list"
 msgstr "Назад к списку"
-
-#: home/templates/home/blog_page.html:30
-#, fuzzy
-#| msgid "Trip date"
-msgid "Trip date:"
-msgstr "Даты поездки"
 
 #: home/templates/home/blog_page.html:39
 msgid "Tags:"
@@ -166,15 +161,15 @@ msgstr "Фильтр"
 msgid "Clear filter"
 msgstr "Сбросить фильтр"
 
-#: home/templates/home/home_page.html:99
+#: home/templates/home/home_page.html:105
 msgid "Read more"
 msgstr "Читать далее"
 
-#: home/templates/home/home_page.html:108
+#: home/templates/home/home_page.html:114
 msgid "Back"
 msgstr "Назад"
 
-#: home/templates/home/home_page.html:110
+#: home/templates/home/home_page.html:116
 #, fuzzy, python-format
 #| msgid "Page %(number)s of %(total)s"
 msgid ""
@@ -182,11 +177,11 @@ msgid ""
 "                        Page %(number)s of %(total)s"
 msgstr "Страница %(number)s из %(total)s"
 
-#: home/templates/home/home_page.html:114
+#: home/templates/home/home_page.html:120
 msgid "Next"
 msgstr "Вперёд"
 
-#: home/templates/home/home_page.html:121
+#: home/templates/home/home_page.html:127
 msgid "No posts yet."
 msgstr "Пока нет публикаций."
 
