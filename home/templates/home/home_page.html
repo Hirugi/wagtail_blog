@@ -35,7 +35,7 @@
                     <option value="">{% trans "Any month" %}</option>
                     {% for m in trip_months %}
                         <option value="{{ m }}"
-                                {% if m|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|get_month_name:LANGUAGE_CODE }}</option>
+                                {% if m|stringformat:"s" == trip_month_selected %}selected{% endif %}>{{ m|month_name }}</option>
                     {% endfor %}
                 </select>
             </label>
