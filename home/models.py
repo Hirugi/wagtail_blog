@@ -376,6 +376,9 @@ class BlogPage(PageBase):
         index.SearchField('body', partial_match=True),
     ]
 
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
+
 
 class StandardPage(PageBase):
     body = StreamField(
@@ -398,7 +401,7 @@ class StandardPage(PageBase):
         index.SearchField('body', partial_match=True),
     ]
 
-    parent_page_types = ['home.HomePage', 'home.StandardPage']
+    parent_page_types = ['home.HomePage', 'home.StandardPage', 'wagtailcore.Page']
     subpage_types = ['home.StandardPage']
 
     class Meta:
