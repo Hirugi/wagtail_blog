@@ -1,64 +1,62 @@
 {% load wagtailcore_tags i18n i18n_extras %}
 <header class="site-header">
-  <div class="site-header__inner">
-    <div class="site-brand">
-      {% wagtail_site as current_site %}
-      {% trans "Blog" as default_blog_label %}
-      {% get_current_language as LANGUAGE_CODE %}
-      <a href="/{{ LANGUAGE_CODE }}/" class="site-brand__link">{{ current_site.site_name|default:default_blog_label }}</a>
-    </div>
-    <nav class="site-nav">
-      <ul class="nav-links">
-        {% with header=settings.home.HeaderSettings %}
-          {% if header and header.header_links %}
-            {% for item in header.header_links %}
-              {% with link=item.value|localized_snippet:LANGUAGE_CODE %}
-                {% if link.url|slice:":1" == "/" and link.url|slice:"0:4" != "/en/" and link.url|slice:"0:4" != "/ru/" and link.url|slice:"0:4" != "/ja/" %}
-                  <li class="nav-links__item"><a href="/{{ LANGUAGE_CODE }}{{ link.url }}" class="nav-links__link">{{ link.label }}</a></li>
-                {% else %}
-                  <li class="nav-links__item"><a href="{{ link.url }}" class="nav-links__link">{{ link.label }}</a></li>
-                {% endif %}
-              {% endwith %}
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-      </ul>
-    </nav>
-    <div class="header-right">
-      <div class="lang-switcher">
-        <div class="lang-switcher__label">
-          <span class="lang-switcher__text">🌐</span>
+    <div class="site-header__inner">
+        <div class="site-brand">
+            {% wagtail_site as current_site %}
+            {% trans "Blog" as default_blog_label %}
+            {% get_current_language as LANGUAGE_CODE %}
+            <a href="/{{ LANGUAGE_CODE }}/"
+               class="site-brand__link">{{ current_site.site_name|default:default_blog_label }}</a>
         </div>
-        <form action="{% url 'set_language' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          {% with current_page=page %}
-            {% if current_page and current_page|page_model == 'BlogPage' %}
-              {% with codes=current_page|translation_codes %}
-                <select name="language" onchange="this.form.submit()" title="{% trans 'Select language' %}">
-                  <option value="{{ LANGUAGE_CODE }}" selected hidden>{{ LANGUAGE_CODE|lang_label }}</option>
-                  {% for code in codes %}
-                    {% if code != LANGUAGE_CODE %}
-                      <option value="{{ code }}">{{ code|lang_label }}</option>
+        <nav class="site-nav">
+            <ul class="nav-links">
+                {% with header=settings.home.HeaderSettings %}
+                    {% if header and header.header_links %}
+                        {% for item in header.header_links %}
+                            {% with link=item.value|localized_snippet:LANGUAGE_CODE %}
+                                {% if link.url|slice:":1" == "/" and link.url|slice:"0:4" != "/en/" and link.url|slice:"0:4" != "/ru/" and link.url|slice:"0:4" != "/ja/" %}
+                                    <li class="nav-links__item"><a href="/{{ LANGUAGE_CODE }}{{ link.url }}"
+                                                                   class="nav-links__link">{{ link.label }}</a></li>
+                                {% else %}
+                                    <li class="nav-links__item"><a href="{{ link.url }}"
+                                                                   class="nav-links__link">{{ link.label }}</a></li>
+                                {% endif %}
+                            {% endwith %}
+                        {% endfor %}
                     {% endif %}
-                  {% endfor %}
-                </select>
-              {% endwith %}
-            {% else %}
-              <select name="language" onchange="this.form.submit()" title="{% trans 'Select language' %}">
-                {% for code in 'ru,en,ja'|cut:',' %}{% endfor %}
-                <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>{{ 'ru'|lang_label }}</option>
-                <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>{{ 'en'|lang_label }}</option>
-                <option value="ja" {% if LANGUAGE_CODE == 'ja' %}selected{% endif %}>{{ 'ja'|lang_label }}</option>
-              </select>
-            {% endif %}
-          {% endwith %}
-        </form>
-      </div>
-      <form class="site-search" action="/{{ LANGUAGE_CODE }}/search/" method="get">
-        <input type="text" name="query" placeholder="{% trans 'Search' %}">
-      </form>
+                {% endwith %}
+            </ul>
+        </nav>
+        <div class="header-right">
+            {% with current_page=page %}
+                {% with codes=current_page|translation_codes %}
+                    {% if codes|length > 1 %}
+                        <div class="lang-switcher">
+                            <div class="lang-switcher__label">
+                                <span class="lang-switcher__text">🌐</span>
+                            </div>
+                            <form action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                                <select name="language" onchange="this.form.submit()"
+                                        title="{% trans 'Select language' %}">
+                                    <option value="{{ LANGUAGE_CODE }}" selected
+                                            hidden>{% trans 'Language selection' %}</option>
+                                    {% for code in codes %}
+                                        {% if code != LANGUAGE_CODE %}
+                                            <option value="{{ code }}">{{ code|lang_label }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            {% endwith %}
+            <form class="site-search" action="/{{ LANGUAGE_CODE }}/search/" method="get">
+                <input type="text" name="query" placeholder="{% trans 'Search' %}">
+            </form>
+        </div>
     </div>
-  </div>
 </header>
 

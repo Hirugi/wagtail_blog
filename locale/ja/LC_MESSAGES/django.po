@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 11:18+0900\n"
+"POT-Creation-Date: 2026-01-13 15:38+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -15,11 +15,15 @@ msgstr ""
 msgid "Blog"
 msgstr "ブログ"
 
-#: app/templates/includes/header.html:38 app/templates/includes/header.html:48
+#: app/templates/includes/header.html:42
 msgid "Select language"
 msgstr "言語を選択"
 
-#: app/templates/includes/header.html:59
+#: app/templates/includes/header.html:44
+msgid "Language selection"
+msgstr "Русский/English"
+
+#: app/templates/includes/header.html:57
 msgid "Search"
 msgstr ""
 
@@ -104,7 +108,7 @@ msgstr "旅行日"
 msgid "Month and year of the trip"
 msgstr "旅行の月と年"
 
-#: home/models.py:351 home/models.py:390
+#: home/models.py:351 home/models.py:393
 msgid "Content"
 msgstr "コンテンツ"
 
@@ -122,11 +126,11 @@ msgid ""
 "excerpts)"
 msgstr "投稿の上部に表示される免責事項テキスト（投稿の要約には表示されません）"
 
-#: home/models.py:405
+#: home/models.py:408
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:406
+#: home/models.py:409
 msgid "Standard pages"
 msgstr ""
 

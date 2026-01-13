@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-31 11:18+0900\n"
+"POT-Creation-Date: 2026-01-13 15:38+0900\n"
 "PO-Revision-Date: 2025-08-08 15:05+0900\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ru\n"
@@ -16,11 +16,15 @@ msgstr ""
 msgid "Blog"
 msgstr "Блог"
 
-#: app/templates/includes/header.html:38 app/templates/includes/header.html:48
+#: app/templates/includes/header.html:42
 msgid "Select language"
 msgstr "Выбрать язык"
 
-#: app/templates/includes/header.html:59
+#: app/templates/includes/header.html:44
+msgid "Language selection"
+msgstr "日本語/English"
+
+#: app/templates/includes/header.html:57
 msgid "Search"
 msgstr "Поиск"
 
@@ -105,7 +109,7 @@ msgstr "Даты поездки"
 msgid "Month and year of the trip"
 msgstr "Месяц и год поездки"
 
-#: home/models.py:351 home/models.py:390
+#: home/models.py:351 home/models.py:393
 msgid "Content"
 msgstr "Контент"
 
@@ -125,11 +129,11 @@ msgstr ""
 "Текст дисклеймера, отображаемый в начале поста (не появится в кратком "
 "описании)"
 
-#: home/models.py:405
+#: home/models.py:408
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:406
+#: home/models.py:409
 msgid "Standard pages"
 msgstr ""
 

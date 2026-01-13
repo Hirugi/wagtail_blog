@@ -59,7 +59,8 @@ def translation_codes(page):
                 seen.add(c)
                 uniq_codes.append(c)
         return uniq_codes
-    except Exception:
+    except Exception as exc:
+        raise exc
         return []
 
 
