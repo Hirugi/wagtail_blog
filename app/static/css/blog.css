@@ -452,8 +452,8 @@ h1, h2, h3 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   position: relative;
-  /* плавный фейд вниз (маска для Safari/Chrome) */
-  -webkit-mask-image: inear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+  /* fade down (mask for Safari/Chrome) */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
           mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
 }
 .post-actions { display: flex; justify-content: flex-end; }
