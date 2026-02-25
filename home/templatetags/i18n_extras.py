@@ -10,7 +10,7 @@ register = template.Library()
 
 @register.filter
 def localized_snippet(obj, language_code: str):
-    """Return translated snippet for the given language if it exists; otherwise the original.
+    """Return a translated snippet for the given language if it exists; otherwise the original.
 
     Works with Wagtail TranslatableMixin-based snippets (e.g., NavLink, SocialLink).
     """
@@ -35,7 +35,7 @@ def localized_snippet(obj, language_code: str):
 
 @register.filter
 def page_model(obj):
-    """Return model class name of a Wagtail Page in templates (safe, without __ access)."""
+    """Return a model class name of a Wagtail Page in templates (safe, without __ access)."""
     try:
         specific_class = getattr(obj, "specific_class", None)
         return specific_class.__name__ if specific_class else ""
@@ -45,7 +45,7 @@ def page_model(obj):
 
 @register.filter
 def translation_codes(page):
-    """Return list of language codes available for the page translations (including current) without duplicates."""
+    """Return a list of language codes available for the page translations (including current) without duplicates."""
     try:
         codes = [t.locale.language_code for t in page.get_translations().live()]
         current = getattr(getattr(page, "locale", None), "language_code", None)
@@ -60,7 +60,6 @@ def translation_codes(page):
                 uniq_codes.append(c)
         return uniq_codes
     except Exception as exc:
-        raise exc
         return []
 
 
@@ -125,7 +124,7 @@ def exclude(seq, item):
 
 @register.filter
 def month_name(month_number):
-    """Return readable month name (e.g. January) for given month number, language aware."""
+    """Return a readable month name (e.g. January) for a given month number, language-aware."""
     try:
         month_number = int(month_number)
         d = date(2000, month_number, 1)
