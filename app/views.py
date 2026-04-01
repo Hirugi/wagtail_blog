@@ -1,10 +1,11 @@
 from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils import translation
 from django.views.decorators.http import require_POST
+from wagtail.models import Site
 
 
 @require_POST
@@ -44,5 +45,40 @@ def switch_language(request):
 
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
     return response
+
+
+def robots_txt(request):
+    site = Site.find_for_request(request)
+    base_url = site.root_url if site else settings.WAGTAILADMIN_BASE_URL
+
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+        "",
+        "# Admin and internal paths",
+        "Disallow: /admin/",
+        "Disallow: /django-admin/",
+        "Disallow: /documents/",
+        "Disallow: /search/",
+        "",
+        "# AI scrapers",
+        "User-agent: GPTBot",
+        "Disallow: /",
+        "",
+        "User-agent: ChatGPT-User",
+        "Disallow: /",
+        "",
+        "User-agent: ClaudeBot",
+        "Disallow: /",
+        "",
+        "User-agent: CCBot",
+        "Disallow: /",
+        "",
+        "User-agent: ByteSpider",
+        "Disallow: /",
+        "",
+        f"Sitemap: {base_url}/sitemap.xml",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 

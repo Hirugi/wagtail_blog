@@ -5,6 +5,7 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.contrib.sitemaps.views import sitemap
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
@@ -13,6 +14,8 @@ from . import views as app_views
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("set-language/", app_views.switch_language, name="set_language"),
+    path("robots.txt", app_views.robots_txt, name="robots_txt"),
+    path("sitemap.xml", sitemap, name="sitemap"),
     # По умолчанию открываем русскую локаль
     path("", RedirectView.as_view(url="/ru/", permanent=False)),
 ]

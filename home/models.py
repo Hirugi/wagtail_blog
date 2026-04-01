@@ -1,4 +1,5 @@
 import hashlib
+import re
 from io import BytesIO
 
 from PIL import Image, ImageOps
@@ -302,15 +303,31 @@ class PageBase(Page):
             ip = request.META.get('REMOTE_ADDR', '')
         return ip or ''
 
+    _BOT_UA_RE = re.compile(
+        r'bot|crawl|spider|slurp|baiduspider|yandexbot|sogou|exabot|facebookexternalhit'
+        r'|facebot|ia_archiver|alexa|msnbot|duckduckbot|semrushbot|ahrefsbot'
+        r'|dotbot|petalbot|bytespider|gptbot|claudebot|chatgpt|applebot'
+        r'|linkedinbot|twitterbot|whatsapp|telegrambot|discordbot|pinterestbot',
+        re.IGNORECASE,
+    )
+
     def _record_unique_view(self, request, ttl_seconds: int = 24 * 60 * 60):
         """
         Increment page.views only once per unique viewer within the TTL window.
         Uniqueness is based on client IP + User-Agent hash.
+        Staff/superusers and bots are excluded from view counting.
         """
         if getattr(request, 'is_preview', False) or request.method != 'GET':
             return
 
+        user = getattr(request, 'user', None)
+        if user and user.is_authenticated and (user.is_staff or user.is_superuser):
+            return
+
         ua = (request.META.get('HTTP_USER_AGENT') or '').strip()
+        if not ua or self._BOT_UA_RE.search(ua):
+            return
+
         ip = self._get_client_ip(request)
         raw = f"{ip}|{ua}".encode('utf-8')
         viewer_hash = hashlib.sha256(raw).hexdigest()[:32]

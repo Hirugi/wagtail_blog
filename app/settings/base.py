@@ -34,6 +34,7 @@ if "CSRF_TRUSTED_ORIGINS" in os.environ:
 INSTALLED_APPS = [
     "home",
     "search",
+    "wagtail.contrib.sitemaps",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -193,7 +194,8 @@ STORAGES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, '.cache'),
     }
 }
 
