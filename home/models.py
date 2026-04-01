@@ -152,9 +152,11 @@ class HeaderSettings(BaseSiteSetting):
     header_links = StreamField([
         ("link", SnippetChooserBlock("home.NavLink")),
     ], use_json_field=True, blank=True, verbose_name=_("Header links"))
+    show_search = models.BooleanField(default=True, verbose_name=_("Show search"))
 
     panels = [
         FieldPanel("header_links"),
+        FieldPanel("show_search"),
     ]
 
     class Meta:

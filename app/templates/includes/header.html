@@ -53,9 +53,11 @@
                     {% endif %}
                 {% endwith %}
             {% endwith %}
-            <form class="site-search" action="/{{ LANGUAGE_CODE }}/search/" method="get">
-                <input type="text" name="query" placeholder="{% trans 'Search' %}">
-            </form>
+            {% if settings.home.HeaderSettings.show_search %}
+                <form class="site-search" action="/{{ LANGUAGE_CODE }}/search/" method="get">
+                    <input type="text" name="query" placeholder="{% trans 'Search' %}">
+                </form>
+            {% endif %}
         </div>
     </div>
 </header>
