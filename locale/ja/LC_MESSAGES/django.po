@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-01 21:56+0900\n"
+"POT-Creation-Date: 2026-04-04 21:10+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -103,7 +103,7 @@ msgstr "タグクラウドの最大数"
 msgid "Views"
 msgstr "視聴回数"
 
-#: home/models.py:356 home/templates/home/blog_page.html:30
+#: home/models.py:356 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "旅行日"
@@ -112,7 +112,7 @@ msgstr "旅行日"
 msgid "Month and year of the trip"
 msgstr "旅行の月と年"
 
-#: home/models.py:370 home/models.py:412
+#: home/models.py:370 home/models.py:448
 msgid "Content"
 msgstr "コンテンツ"
 
@@ -130,11 +130,41 @@ msgid ""
 "excerpts)"
 msgstr "投稿の上部に表示される免責事項テキスト（投稿の要約には表示されません）"
 
+#: home/models.py:393
+msgid "Previous part"
+msgstr "前のパート"
+
+#: home/models.py:398
+msgid "Previous part link text"
+msgstr "前のパートへのリンクテキスト"
+
+#: home/models.py:399
+msgid "Text displayed on the link to the previous part"
+msgstr "前のパートへのリンクに表示するテキスト"
+
+#: home/models.py:407
+#, fuzzy
+#| msgid "Next"
+msgid "Next part"
+msgstr "次のパート"
+
+#: home/models.py:412
+msgid "Next part link text"
+msgstr "次のパートへのリンクテキスト"
+
+#: home/models.py:413
+msgid "Text displayed on the link to the next part"
+msgstr "次のパートへのリンクに表示するテキスト"
+
 #: home/models.py:427
+msgid "Series navigation"
+msgstr "シリーズのナビ"
+
+#: home/models.py:463
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:428
+#: home/models.py:464
 msgid "Standard pages"
 msgstr ""
 
@@ -142,11 +172,19 @@ msgstr ""
 msgid "Back to list"
 msgstr "一覧に戻る"
 
-#: home/templates/home/blog_page.html:39
+#: home/templates/home/blog_page.html:30 home/templates/home/blog_page.html:83
+msgid "Previous chapter"
+msgstr "前へ"
+
+#: home/templates/home/blog_page.html:39 home/templates/home/blog_page.html:92
+msgid "Next chapter"
+msgstr "次へ"
+
+#: home/templates/home/blog_page.html:61
 msgid "Tags:"
 msgstr "タグ:"
 
-#: home/templates/home/blog_page.html:51
+#: home/templates/home/blog_page.html:73
 msgid "Page is empty."
 msgstr "ページは空です。"
 

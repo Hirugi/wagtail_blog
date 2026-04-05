@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
 from wagtail.blocks import RichTextBlock, RawHTMLBlock, StructBlock, ListBlock
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import StreamField
@@ -383,12 +383,48 @@ class BlogPage(PageBase):
         help_text=_('Disclaimer text displayed at the top of the post (will not appear in post excerpts)')
     )
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+
+    prev_part = models.ForeignKey(
+        'home.BlogPage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Previous part'),
+    )
+    prev_part_text = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_('Previous part link text'),
+        help_text=_('Text displayed on the link to the previous part'),
+    )
+    next_part = models.ForeignKey(
+        'home.BlogPage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Next part'),
+    )
+    next_part_text = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name=_('Next part link text'),
+        help_text=_('Text displayed on the link to the next part'),
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel('cover_image'),
         FieldPanel('trip_date'),
         FieldPanel('disclaimer'),
         FieldPanel('body'),
         FieldPanel('tags'),
+        MultiFieldPanel([
+            PageChooserPanel('prev_part', 'home.BlogPage'),
+            FieldPanel('prev_part_text'),
+            PageChooserPanel('next_part', 'home.BlogPage'),
+            FieldPanel('next_part_text'),
+        ], heading=_('Series navigation')),
     ]
     search_fields = Page.search_fields + [
         index.SearchField('title', partial_match=True),

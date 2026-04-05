@@ -20,6 +20,28 @@
 <div class="blog-post-container">
     <a href="{% pageurl page.get_parent %}" class="back-link">&larr; {% trans "Back to list" %}</a>
     <h1 class="post-page-title">{{ page.title }}</h1>
+    {% if page.prev_part or page.next_part %}
+    <div class="series-nav">
+        {% if page.prev_part %}
+            <a href="{% pageurl page.prev_part %}" class="series-link series-link-prev">&larr;
+                {% if page.prev_part_text %}
+                    {{ page.prev_part_text }}
+                {% else %}
+                    {% trans "Previous chapter" %}
+                {% endif %}
+            </a>
+        {% endif %}
+        {% if page.next_part %}
+            <a href="{% pageurl page.next_part %}" class="series-link series-link-next">
+            {% if page.next_part_text %}
+                {{ page.next_part_text }}
+            {% else %}
+                {% trans "Next chapter" %}
+            {% endif %}
+            &rarr;</a>
+        {% endif %}
+    </div>
+    {% endif %}
     <span class="post-page-date">
         {% if page.first_published_at %}
             {{ page.first_published_at|date:"j F, Y" }}
@@ -51,5 +73,27 @@
             <p>{% trans "Page is empty." %}</p>
         {% endif %}
     </div>
+    {% if page.prev_part or page.next_part %}
+    <div class="series-nav series-nav-bottom">
+         {% if page.prev_part %}
+            <a href="{% pageurl page.prev_part %}" class="series-link series-link-prev">&larr;
+                {% if page.prev_part_text %}
+                    {{ page.prev_part_text }}
+                {% else %}
+                    {% trans "Previous chapter" %}
+                {% endif %}
+            </a>
+        {% endif %}
+        {% if page.next_part %}
+            <a href="{% pageurl page.next_part %}" class="series-link series-link-next">
+            {% if page.next_part_text %}
+                {{ page.next_part_text }}
+            {% else %}
+                {% trans "Next chapter" %}
+            {% endif %}
+            &rarr;</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
 {% endblock content %}

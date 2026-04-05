@@ -618,3 +618,48 @@ h1, h2, h3 {
   font-size: 0.85rem;
   color: #6b7785;
 }
+
+/* Series navigation (prev/next part links) */
+.series-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+.series-nav-bottom {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+.series-link {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  background: #e3f0fc;
+  color: var(--primary);
+  font-size: 0.95em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.series-link:hover {
+  background: var(--primary);
+  color: #fff;
+}
+.series-link-next {
+  margin-left: auto;
+}
+
+/* Post card footer with published date (left) and read-more (right) */
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+.post-pubdate {
+  font-size: 0.85rem;
+  color: #6b7785;
+}
