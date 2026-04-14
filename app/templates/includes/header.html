@@ -14,13 +14,15 @@
                     {% if header and header.header_links %}
                         {% for item in header.header_links %}
                             {% with link=item.value|localized_snippet:LANGUAGE_CODE %}
-                                {% if link.url|slice:":1" == "/" and link.url|slice:"0:4" != "/en/" and link.url|slice:"0:4" != "/ru/" and link.url|slice:"0:4" != "/ja/" %}
-                                    <li class="nav-links__item"><a href="/{{ LANGUAGE_CODE }}{{ link.url }}"
-                                                                   class="nav-links__link">{{ link.label }}</a></li>
-                                {% else %}
-                                    <li class="nav-links__item"><a href="{{ link.url }}"
-                                                                   class="nav-links__link">{{ link.label }}</a></li>
-                                {% endif %}
+                                {% with href=link.get_url %}
+                                    {% if href|slice:":1" == "/" and href|slice:"0:4" != "/en/" and href|slice:"0:4" != "/ru/" and href|slice:"0:4" != "/ja/" %}
+                                        <li class="nav-links__item"><a href="/{{ LANGUAGE_CODE }}{{ href }}"
+                                                                       class="nav-links__link">{{ link.label }}</a></li>
+                                    {% else %}
+                                        <li class="nav-links__item"><a href="{{ href }}"
+                                                                       class="nav-links__link">{{ link.label }}</a></li>
+                                    {% endif %}
+                                {% endwith %}
                             {% endwith %}
                         {% endfor %}
                     {% endif %}

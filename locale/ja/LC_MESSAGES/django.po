@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-04 21:10+0900\n"
+"POT-Creation-Date: 2026-04-14 13:27+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -15,15 +15,15 @@ msgstr ""
 msgid "Blog"
 msgstr "ブログ"
 
-#: app/templates/includes/header.html:42
+#: app/templates/includes/header.html:44
 msgid "Select language"
 msgstr "言語を選択"
 
-#: app/templates/includes/header.html:44
+#: app/templates/includes/header.html:46
 msgid "Language selection"
 msgstr "Русский/English"
 
-#: app/templates/includes/header.html:58
+#: app/templates/includes/header.html:60
 msgid "Search"
 msgstr "検索"
 
@@ -47,126 +47,154 @@ msgstr "記述テキスト"
 msgid "Don't downscale on upload"
 msgstr "アップロード時に縮小しない"
 
-#: home/models.py:115
+#: home/models.py:103
+msgid "Label"
+msgstr "ラベル"
+
+#: home/models.py:110
+msgid "Page"
+msgstr "ページ"
+
+#: home/models.py:111
+msgid "Select a page to link to. Takes priority over the URL field."
+msgstr "リンク先のページを選択してください。URLフィールドよりも優先されます。"
+
+#: home/models.py:116
+msgid "URL"
+msgstr "URL"
+
+#: home/models.py:117
+msgid ""
+"Used when no page is selected. Enter a full URL (e.g. https://"
+"blog.example.com) or a path starting with / for internal links."
+msgstr ""
+"ページが選択されていない場合に使用します。完全なURL（例：https://"
+"blog.example.com）を入力するか、内部リンクの場合は / で始まるパスを入力してください。"
+
+#: home/models.py:125
+msgid "Link target (page takes priority over URL)"
+msgstr "リンク先（ページがURLよりも優先されます）"
+
+#: home/models.py:137
 msgid "Navigation link"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:116
+#: home/models.py:138
 msgid "Navigation links"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:129
+#: home/models.py:151
 msgid "Icon"
 msgstr "アイコン"
 
-#: home/models.py:142
+#: home/models.py:164
 msgid "Social link"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:143 home/models.py:173
+#: home/models.py:165 home/models.py:195
 msgid "Social links"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:154
+#: home/models.py:176
 msgid "Header links"
 msgstr "ヘッダーリンク"
 
-#: home/models.py:155
+#: home/models.py:177
 msgid "Show search"
 msgstr "検索バーを表示する"
 
-#: home/models.py:163
+#: home/models.py:185
 msgid "Header settings"
 msgstr "ヘッダー設定"
 
-#: home/models.py:170
+#: home/models.py:192
 msgid "Footer links"
 msgstr "フッターリンク"
 
-#: home/models.py:174
+#: home/models.py:196
 msgid "Copyright"
 msgstr "著作権"
 
-#: home/models.py:183
+#: home/models.py:205
 msgid "Footer settings"
 msgstr "フッター設定"
 
-#: home/models.py:190
+#: home/models.py:212
 msgid "Posts per page"
 msgstr "ページあたりの投稿数"
 
-#: home/models.py:191
+#: home/models.py:213
 msgid "Max tags in cloud"
 msgstr "タグクラウドの最大数"
 
-#: home/models.py:284 home/models.py:294
+#: home/models.py:306 home/models.py:316
 msgid "Views"
 msgstr "視聴回数"
 
-#: home/models.py:356 home/templates/home/blog_page.html:52
+#: home/models.py:378 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "旅行日"
 
-#: home/models.py:359
+#: home/models.py:381
 msgid "Month and year of the trip"
 msgstr "旅行の月と年"
 
-#: home/models.py:370 home/models.py:448
+#: home/models.py:392 home/models.py:470
 msgid "Content"
 msgstr "コンテンツ"
 
-#: home/models.py:378
+#: home/models.py:400
 msgid "Cover image"
 msgstr "カバー画像"
 
-#: home/models.py:382
+#: home/models.py:404
 msgid "Disclaimer"
 msgstr "免責事項"
 
-#: home/models.py:383
+#: home/models.py:405
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
 msgstr "投稿の上部に表示される免責事項テキスト（投稿の要約には表示されません）"
 
-#: home/models.py:393
+#: home/models.py:415
 msgid "Previous part"
 msgstr "前のパート"
 
-#: home/models.py:398
+#: home/models.py:420
 msgid "Previous part link text"
 msgstr "前のパートへのリンクテキスト"
 
-#: home/models.py:399
+#: home/models.py:421
 msgid "Text displayed on the link to the previous part"
 msgstr "前のパートへのリンクに表示するテキスト"
 
-#: home/models.py:407
+#: home/models.py:429
 #, fuzzy
 #| msgid "Next"
 msgid "Next part"
 msgstr "次のパート"
 
-#: home/models.py:412
+#: home/models.py:434
 msgid "Next part link text"
 msgstr "次のパートへのリンクテキスト"
 
-#: home/models.py:413
+#: home/models.py:435
 msgid "Text displayed on the link to the next part"
 msgstr "次のパートへのリンクに表示するテキスト"
 
-#: home/models.py:427
+#: home/models.py:449
 msgid "Series navigation"
 msgstr "シリーズのナビ"
 
-#: home/models.py:463
+#: home/models.py:485
 msgid "Standard page"
-msgstr ""
+msgstr "スタンダードページ"
 
-#: home/models.py:464
+#: home/models.py:486
 msgid "Standard pages"
-msgstr ""
+msgstr "スタンダードページ"
 
 #: home/templates/home/blog_page.html:21
 msgid "Back to list"

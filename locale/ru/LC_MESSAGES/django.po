@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-04 21:10+0900\n"
+"POT-Creation-Date: 2026-04-14 13:27+0900\n"
 "PO-Revision-Date: 2025-08-08 15:05+0900\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ru\n"
@@ -16,15 +16,15 @@ msgstr ""
 msgid "Blog"
 msgstr "Блог"
 
-#: app/templates/includes/header.html:42
+#: app/templates/includes/header.html:44
 msgid "Select language"
 msgstr "Выбрать язык"
 
-#: app/templates/includes/header.html:44
+#: app/templates/includes/header.html:46
 msgid "Language selection"
 msgstr "日本語/English"
 
-#: app/templates/includes/header.html:58
+#: app/templates/includes/header.html:60
 msgid "Search"
 msgstr "Поиск"
 
@@ -48,84 +48,112 @@ msgstr "Текст - описание"
 msgid "Don't downscale on upload"
 msgstr "Не уменьшать при загрузке"
 
-#: home/models.py:115
+#: home/models.py:103
+msgid "Label"
+msgstr "Текст ссылки"
+
+#: home/models.py:110
+msgid "Page"
+msgstr "Страница"
+
+#: home/models.py:111
+msgid "Select a page to link to. Takes priority over the URL field."
+msgstr "Выберите страницу, на которую нужно сослаться. Этот параметр имеет приоритет над полем URL."
+
+#: home/models.py:116
+msgid "URL"
+msgstr "URL"
+
+#: home/models.py:117
+msgid ""
+"Used when no page is selected. Enter a full URL (e.g. https://"
+"blog.example.com) or a path starting with / for internal links."
+msgstr ""
+"Используется, если страница не выбрана. Введите полный URL-адрес (например, https://"
+"blog.example.com) или путь, начинающийся с /, для внутренних ссылок."
+
+#: home/models.py:125
+msgid "Link target (page takes priority over URL)"
+msgstr "Целевая ссылка (страница имеет приоритет над URL)"
+
+#: home/models.py:137
 msgid "Navigation link"
 msgstr "Ссылка в навигации"
 
-#: home/models.py:116
+#: home/models.py:138
 msgid "Navigation links"
 msgstr "Ссылки в навигации"
 
-#: home/models.py:129
+#: home/models.py:151
 msgid "Icon"
 msgstr "Иконка"
 
-#: home/models.py:142
+#: home/models.py:164
 msgid "Social link"
 msgstr "Ссылка на соцсети"
 
-#: home/models.py:143 home/models.py:173
+#: home/models.py:165 home/models.py:195
 msgid "Social links"
 msgstr "Ссылки на соцсети"
 
-#: home/models.py:154
+#: home/models.py:176
 msgid "Header links"
 msgstr "Ссылки в хедере"
 
-#: home/models.py:155
+#: home/models.py:177
 msgid "Show search"
 msgstr "Отображать строку поиска"
 
-#: home/models.py:163
+#: home/models.py:185
 msgid "Header settings"
 msgstr "Настройки хедера"
 
-#: home/models.py:170
+#: home/models.py:192
 msgid "Footer links"
 msgstr "Ссылки в футере"
 
-#: home/models.py:174
+#: home/models.py:196
 msgid "Copyright"
 msgstr "Копирайт"
 
-#: home/models.py:183
+#: home/models.py:205
 msgid "Footer settings"
 msgstr "Настройки футера"
 
-#: home/models.py:190
+#: home/models.py:212
 msgid "Posts per page"
 msgstr "Постов на странице"
 
-#: home/models.py:191
+#: home/models.py:213
 msgid "Max tags in cloud"
 msgstr "Максимум тегов в облаке"
 
-#: home/models.py:284 home/models.py:294
+#: home/models.py:306 home/models.py:316
 msgid "Views"
 msgstr "Просмотра(ов)"
 
-#: home/models.py:356 home/templates/home/blog_page.html:52
+#: home/models.py:378 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "Даты поездки"
 
-#: home/models.py:359
+#: home/models.py:381
 msgid "Month and year of the trip"
 msgstr "Месяц и год поездки"
 
-#: home/models.py:370 home/models.py:448
+#: home/models.py:392 home/models.py:470
 msgid "Content"
 msgstr "Контент"
 
-#: home/models.py:378
+#: home/models.py:400
 msgid "Cover image"
 msgstr "Обложка"
 
-#: home/models.py:382
+#: home/models.py:404
 msgid "Disclaimer"
 msgstr "Дисклеймер"
 
-#: home/models.py:383
+#: home/models.py:405
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
@@ -133,41 +161,41 @@ msgstr ""
 "Текст дисклеймера, отображаемый в начале поста (не появится в кратком "
 "описании)"
 
-#: home/models.py:393
+#: home/models.py:415
 msgid "Previous part"
 msgstr "Предыдущая часть"
 
-#: home/models.py:398
+#: home/models.py:420
 msgid "Previous part link text"
 msgstr "Текст ссылки предыдущей части"
 
-#: home/models.py:399
+#: home/models.py:421
 msgid "Text displayed on the link to the previous part"
 msgstr "Текст, отображаемый на ссылке на предыдущую часть"
 
-#: home/models.py:407
+#: home/models.py:429
 msgid "Next part"
 msgstr "Следующая часть"
 
-#: home/models.py:412
+#: home/models.py:434
 msgid "Next part link text"
 msgstr "Текст ссылки следующей части"
 
-#: home/models.py:413
+#: home/models.py:435
 msgid "Text displayed on the link to the next part"
 msgstr "Текст, отображаемый на ссылке на следующую часть"
 
-#: home/models.py:427
+#: home/models.py:449
 msgid "Series navigation"
 msgstr "Навигация по частям"
 
-#: home/models.py:463
+#: home/models.py:485
 msgid "Standard page"
-msgstr ""
+msgstr "Стандартная страница"
 
-#: home/models.py:464
+#: home/models.py:486
 msgid "Standard pages"
-msgstr ""
+msgstr "Стандартные страницы"
 
 #: home/templates/home/blog_page.html:21
 msgid "Back to list"

@@ -100,13 +100,35 @@ class CustomRendition(AbstractRendition):
 
 @register_snippet
 class NavLink(TranslatableMixin, models.Model):
-    label = models.CharField(max_length=255)
-    url = models.CharField(max_length=500)
+    label = models.CharField(max_length=255, verbose_name=_("Label"))
+    page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_("Page"),
+        help_text=_("Select a page to link to. Takes priority over the URL field."),
+    )
+    url = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name=_("URL"),
+        help_text=_("Used when no page is selected. Enter a full URL (e.g. https://blog.example.com) or a path starting with / for internal links."),
+    )
 
     panels = [
         FieldPanel("label"),
-        FieldPanel("url"),
+        MultiFieldPanel([
+            PageChooserPanel("page"),
+            FieldPanel("url"),
+        ], heading=_("Link target (page takes priority over URL)")),
     ]
+
+    def get_url(self):
+        if self.page:
+            return self.page.full_url
+        return self.url
 
     def __str__(self) -> str:
         return self.label

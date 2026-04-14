@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-04 21:10+0900\n"
+"POT-Creation-Date: 2026-04-14 13:27+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: en\n"
@@ -15,15 +15,15 @@ msgstr ""
 msgid "Blog"
 msgstr "Blog"
 
-#: app/templates/includes/header.html:42
+#: app/templates/includes/header.html:44
 msgid "Select language"
 msgstr ""
 
-#: app/templates/includes/header.html:44
+#: app/templates/includes/header.html:46
 msgid "Language selection"
 msgstr "Русский/日本語"
 
-#: app/templates/includes/header.html:58
+#: app/templates/includes/header.html:60
 msgid "Search"
 msgstr "Search"
 
@@ -47,124 +47,150 @@ msgstr ""
 msgid "Don't downscale on upload"
 msgstr ""
 
-#: home/models.py:115
-msgid "Navigation link"
+#: home/models.py:103
+msgid "Label"
+msgstr ""
+
+#: home/models.py:110
+msgid "Page"
+msgstr ""
+
+#: home/models.py:111
+msgid "Select a page to link to. Takes priority over the URL field."
 msgstr ""
 
 #: home/models.py:116
+msgid "URL"
+msgstr ""
+
+#: home/models.py:117
+msgid ""
+"Used when no page is selected. Enter a full URL (e.g. https://"
+"blog.example.com) or a path starting with / for internal links."
+msgstr ""
+
+#: home/models.py:125
+msgid "Link target (page takes priority over URL)"
+msgstr ""
+
+#: home/models.py:137
+msgid "Navigation link"
+msgstr ""
+
+#: home/models.py:138
 msgid "Navigation links"
 msgstr ""
 
-#: home/models.py:129
+#: home/models.py:151
 msgid "Icon"
 msgstr ""
 
-#: home/models.py:142
+#: home/models.py:164
 msgid "Social link"
 msgstr ""
 
-#: home/models.py:143 home/models.py:173
+#: home/models.py:165 home/models.py:195
 msgid "Social links"
 msgstr ""
 
-#: home/models.py:154
+#: home/models.py:176
 msgid "Header links"
 msgstr ""
 
-#: home/models.py:155
+#: home/models.py:177
 msgid "Show search"
 msgstr "Show search bar"
 
-#: home/models.py:163
+#: home/models.py:185
 msgid "Header settings"
 msgstr ""
 
-#: home/models.py:170
+#: home/models.py:192
 msgid "Footer links"
 msgstr ""
 
-#: home/models.py:174
+#: home/models.py:196
 msgid "Copyright"
 msgstr ""
 
-#: home/models.py:183
+#: home/models.py:205
 msgid "Footer settings"
 msgstr ""
 
-#: home/models.py:190
+#: home/models.py:212
 msgid "Posts per page"
 msgstr ""
 
-#: home/models.py:191
+#: home/models.py:213
 msgid "Max tags in cloud"
 msgstr ""
 
-#: home/models.py:284 home/models.py:294
+#: home/models.py:306 home/models.py:316
 msgid "Views"
 msgstr "Views"
 
-#: home/models.py:356 home/templates/home/blog_page.html:52
+#: home/models.py:378 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr ""
 
-#: home/models.py:359
+#: home/models.py:381
 msgid "Month and year of the trip"
 msgstr ""
 
-#: home/models.py:370 home/models.py:448
+#: home/models.py:392 home/models.py:470
 msgid "Content"
 msgstr ""
 
-#: home/models.py:378
+#: home/models.py:400
 msgid "Cover image"
 msgstr ""
 
-#: home/models.py:382
+#: home/models.py:404
 msgid "Disclaimer"
 msgstr ""
 
-#: home/models.py:383
+#: home/models.py:405
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
 msgstr ""
 
-#: home/models.py:393
+#: home/models.py:415
 msgid "Previous part"
 msgstr ""
 
-#: home/models.py:398
+#: home/models.py:420
 msgid "Previous part link text"
 msgstr ""
 
-#: home/models.py:399
+#: home/models.py:421
 msgid "Text displayed on the link to the previous part"
 msgstr ""
 
-#: home/models.py:407
+#: home/models.py:429
 #, fuzzy
 #| msgid "Next"
 msgid "Next part"
 msgstr "Next"
 
-#: home/models.py:412
+#: home/models.py:434
 msgid "Next part link text"
 msgstr ""
 
-#: home/models.py:413
+#: home/models.py:435
 msgid "Text displayed on the link to the next part"
 msgstr ""
 
-#: home/models.py:427
+#: home/models.py:449
 msgid "Series navigation"
 msgstr ""
 
-#: home/models.py:463
+#: home/models.py:485
 msgid "Standard page"
 msgstr ""
 
-#: home/models.py:464
+#: home/models.py:486
 msgid "Standard pages"
 msgstr ""
 

@@ -10,11 +10,13 @@
             <ul class="footer-links__list">
               {% for item in footer.footer_links %}
                 {% with link=item.value|localized_snippet:LANGUAGE_CODE %}
-                  {% if link.url|slice:":1" == "/" and link.url|slice:"0:4" != "/en/" and link.url|slice:"0:4" != "/ru/" and link.url|slice:"0:4" != "/ja/" %}
-                    <li class="footer-links__item"><a href="/{{ LANGUAGE_CODE }}{{ link.url }}">{{ link.label }}</a></li>
-                  {% else %}
-                    <li class="footer-links__item"><a href="{{ link.url }}">{{ link.label }}</a></li>
-                  {% endif %}
+                  {% with href=link.get_url %}
+                    {% if href|slice:":1" == "/" and href|slice:"0:4" != "/en/" and href|slice:"0:4" != "/ru/" and href|slice:"0:4" != "/ja/" %}
+                      <li class="footer-links__item"><a href="/{{ LANGUAGE_CODE }}{{ href }}">{{ link.label }}</a></li>
+                    {% else %}
+                      <li class="footer-links__item"><a href="{{ href }}">{{ link.label }}</a></li>
+                    {% endif %}
+                  {% endwith %}
                 {% endwith %}
               {% endfor %}
             </ul>
