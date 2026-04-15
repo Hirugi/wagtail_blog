@@ -87,7 +87,7 @@
                         {% if post.trip_date %}
                             <span class="post-date">
                         {% trans "Trip date" %}:
-                        {{ post.trip_date|date:"F Y" }}
+                        {{ post.trip_date|date:"YEAR_MONTH_FORMAT" }}
                      </span>
                         {% endif %}
                         <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
@@ -99,7 +99,7 @@
                         <div class="post-card-footer">
                          <span class="post-pubdate">
                              {% if post.first_published_at %}
-                                 {{ post.first_published_at|date:"j F, Y" }}
+                                 {{ post.first_published_at|date:"DATE_FORMAT" }}
                              {% endif %}
                          </span>
                             <a href="{{ post.url }}" class="read-more">{% trans "Read more" %}</a>
