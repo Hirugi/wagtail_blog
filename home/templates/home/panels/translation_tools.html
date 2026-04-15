@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="tt-panel">
+<div class="tt-panel" data-tt-base-url="{{ base_url }}" data-tt-page-id="{{ page_id }}">
 
     <div class="tt-notice">
         <span class="tt-notice-icon">&#9888;</span>
@@ -33,6 +33,9 @@
     <table class="tt-table tt-table--blocks">
         <thead>
             <tr>
+                <th class="tt-th-check">
+                    <input type="checkbox" class="tt-check-all" aria-label="{% trans 'Select all' %}">
+                </th>
                 <th class="tt-th-num">#</th>
                 <th class="tt-th-type">{% trans "Type" %}</th>
                 <th class="tt-th-preview">{% trans "Preview" %}</th>
@@ -42,25 +45,78 @@
         <tbody>
             {% for block in blocks %}
             <tr>
+                <td class="tt-block-check">
+                    <input type="checkbox" value="{{ block.index }}"
+                           class="tt-check-row" aria-label="{% trans 'Select block' %} {{ block.num }}">
+                </td>
                 <td class="tt-block-num">{{ block.num }}</td>
                 <td class="tt-block-type">{{ block.type }}</td>
                 <td class="tt-block-preview" title="{{ block.preview }}">{{ block.preview }}</td>
                 <td class="tt-block-action">
-                    <a href="{{ block.url }}" class="tt-btn tt-btn--ai tt-btn--sm" title="{% trans "Translate" %}">{% trans "Translate" %}</a>
+                    <a href="{{ block.url }}" class="tt-btn tt-btn--ai tt-btn--sm"
+                       title="{% trans 'Translate just this block' %}">{% trans "Translate" %}</a>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="4" class="tt-table-foot">
+                <td colspan="5" class="tt-table-foot">
+                    <a href="#" class="tt-btn tt-btn--ai tt-translate-selected">
+                        {% trans "Translate selected" %}
+                    </a>
                     <a href="{{ translate_all_url }}" class="tt-btn tt-btn--all">
-                        {% trans "Translate all blocks" %}
+                        {% trans "Translate all" %}
                     </a>
                 </td>
             </tr>
         </tfoot>
     </table>
+
+    <script>
+        (function () {
+            var panel = document.currentScript.closest('.tt-panel');
+            if (!panel) return;
+
+            var master = panel.querySelector('.tt-check-all');
+            var rows = panel.querySelectorAll('.tt-check-row');
+            var selectedBtn = panel.querySelector('.tt-translate-selected');
+
+            // master ↔ row-checkbox sync
+            if (master && rows.length) {
+                master.addEventListener('change', function () {
+                    rows.forEach(function (cb) { cb.checked = master.checked; });
+                });
+                rows.forEach(function (cb) {
+                    cb.addEventListener('change', function () {
+                        var all = Array.prototype.every.call(rows, function (c) { return c.checked; });
+                        var none = Array.prototype.every.call(rows, function (c) { return !c.checked; });
+                        master.checked = all;
+                        master.indeterminate = !all && !none;
+                    });
+                });
+            }
+
+            // "Translate selected" → build URL from checked boxes, navigate there
+            if (selectedBtn) {
+                selectedBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var checked = Array.prototype.filter.call(rows, function (c) { return c.checked; });
+                    if (!checked.length) {
+                        alert("{% trans 'Please select at least one block.' %}");
+                        return;
+                    }
+                    var base = panel.dataset.ttBaseUrl;
+                    var pageId = panel.dataset.ttPageId;
+                    var params = new URLSearchParams();
+                    params.set('page_id', pageId);
+                    params.set('field', 'body');
+                    checked.forEach(function (c) { params.append('block_index', c.value); });
+                    window.location.href = base + '?' + params.toString();
+                });
+            }
+        })();
+    </script>
     {% endif %}
 
 </div>

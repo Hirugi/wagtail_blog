@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 19:52+0900\n"
+"POT-Creation-Date: 2026-04-15 15:16+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -352,7 +352,7 @@ msgid "Note"
 msgstr "ノート"
 
 #: home/templates/home/panels/translation_tools.html:24
-#: home/templates/home/panels/translation_tools.html:49
+#: home/templates/home/panels/translation_tools.html:57
 msgid "Translate"
 msgstr "翻訳"
 
@@ -361,19 +361,40 @@ msgid "Set default"
 msgstr "デフォルトにする"
 
 #: home/templates/home/panels/translation_tools.html:37
+msgid "Select all"
+msgstr "全部を選択する"
+
+#: home/templates/home/panels/translation_tools.html:40
 msgid "Type"
 msgstr "タイプ"
 
-#: home/templates/home/panels/translation_tools.html:38
+#: home/templates/home/panels/translation_tools.html:41
 msgid "Preview"
 msgstr "プレビュー"
 
-#: home/templates/home/panels/translation_tools.html:58
-msgid "Translate all blocks"
-msgstr "すべてのブロックを翻訳する"
+#: home/templates/home/panels/translation_tools.html:50
+msgid "Select block"
+msgstr "ブロックを選択"
+
+#: home/templates/home/panels/translation_tools.html:57
+msgid "Translate just this block"
+msgstr "このブロックを翻訳する"
+
+#: home/templates/home/panels/translation_tools.html:66
+msgid "Translate selected"
+msgstr "選択した項目を翻訳する"
+
+#: home/templates/home/panels/translation_tools.html:69
+msgid "Translate all"
+msgstr "全てを翻訳する"
+
+#: home/templates/home/panels/translation_tools.html:106
+msgid "Please select at least one block."
+msgstr "少なくとも1つのブロックを選択してください。"
 
 #: home/translation_views.py:28
-msgid "Translation settings not configured. Go to Settings → Translation settings."
+msgid ""
+"Translation settings not configured. Go to Settings → Translation settings."
 msgstr "翻訳設定が構成されていません。設定 → 翻訳設定に移動してください。"
 
 #: home/translation_views.py:43
@@ -398,39 +419,32 @@ msgstr "指定されたロケールのソースページが見つかりません
 
 #: home/translation_views.py:78
 msgid "Title translated."
-msgstr "翻訳"
+msgstr "タイトルは翻訳されました。"
 
-#: home/translation_views.py:87
-msgid "Block index out of range"
-msgstr "ブロックインデックスが範囲外です"
+#: home/translation_views.py:91
+msgid "Invalid block index."
+msgstr "無効なブロックインデックスです。"
 
-#: home/translation_views.py:92
-msgid "Block type not supported for translation"
-msgstr "ブロックタイプは変換でサポートされていません"
+#: home/translation_views.py:118
+msgid "Blocks translated"
+msgstr "ブロックは翻訳されました"
 
-#: home/translation_views.py:104
-msgid "Block translated"
-msgstr "翻訳"
+#: home/translation_views.py:121
+msgid "Blocks skipped (not translatable or out of range)"
+msgstr "ブロックはスキップされた（翻訳不可能または範囲外）"
 
 #: home/translation_views.py:124
-msgid "All blocks translated."
-msgstr "すべてのブロックが翻訳されました。"
+msgid "No translatable blocks selected."
+msgstr "翻訳可能なブロックは選択されていません。"
 
-#: home/translation_views.py:126
-msgid "No translatable blocks found in source page."
-msgstr "ソース ページに翻訳可能なブロックが見つかりません。"
-
-#: home/translation_views.py:129
+#: home/translation_views.py:127
 msgid "Unknown field"
 msgstr "未知のフィールド"
 
-#: home/translation_views.py:133
+#: home/translation_views.py:131
 msgid "Translation error"
-msgstr "翻訳プロンプト"
+msgstr "翻訳エラー"
 
-#: home/translation_views.py:136
+#: home/translation_views.py:134
 msgid "Unexpected error during translation"
 msgstr "翻訳中に予期しないエラーが発生しました"
-
-#~ msgid "Tag cloud:"
-#~ msgstr "タグクラウド:"

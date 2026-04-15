@@ -25,10 +25,11 @@
     flex-shrink: 0;
 }
 
-/* tables */
+/* tables — fixed layout so our column widths are authoritative */
 .tt-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 .tt-table thead th {
     padding: 8px 12px 4px;
@@ -47,30 +48,46 @@
 }
 .tt-table--blocks { border-top: 1px solid #e0e0e0; }
 
-/* field columns */
-.tt-th-field, .tt-field-name { width: 100px; }
-.tt-field-name { font-weight: 600; }
-.tt-field-note { color: #888; font-style: italic; }
-.tt-th-action, .tt-field-action,
-.tt-block-action { width: 1%; white-space: nowrap; text-align: right; }
+/* fields table columns: Field | Note | Action */
+.tt-th-field    { width: 140px; }
+.tt-th-detail   { width: auto;  }
+.tt-th-action   { width: 180px; }
 
-/* block columns */
-.tt-th-num, .tt-block-num { width: 30px; text-align: center; color: #999; }
-.tt-th-type, .tt-block-type { width: 80px; }
-.tt-block-type { color: #888; font-family: monospace; font-size: 0.85em; }
+.tt-field-name  { font-weight: 600; }
+.tt-field-note  { color: #888; font-style: italic; }
+.tt-field-action,
+.tt-block-action { text-align: right; }
+
+/* blocks table columns: Check | # | Type | Preview | Action */
+.tt-th-check    { width: 44px;  }
+.tt-th-num      { width: 44px;  }
+.tt-th-type     { width: 110px; }
+.tt-th-preview  { width: auto;  }
+/* .tt-th-action reused from above (180px) */
+
+.tt-block-check { text-align: center; padding-right: 0; }
+.tt-th-check    { text-align: center; padding-right: 0; }
+.tt-block-check input,
+.tt-th-check    input { cursor: pointer; margin: 0; vertical-align: middle; }
+
+.tt-block-num   { text-align: center; color: #999; }
+.tt-block-type  { color: #888; font-family: monospace; font-size: 0.85em; }
 .tt-block-preview {
-    max-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* footer row */
+/* footer row: two buttons side-by-side */
 .tt-table-foot {
     padding: 8px 12px !important;
     border-top: 1px solid #f0f0f0;
+    /* tfoot td is still a table cell; flex here is fine because
+       nothing else relies on the cell being a block container */
 }
+.tt-table-foot > * { margin-right: 8px; }
+.tt-table-foot > *:last-child { margin-right: 0; }
 
 /* buttons */
 .tt-btn {

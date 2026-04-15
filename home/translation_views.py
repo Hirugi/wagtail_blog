@@ -15,7 +15,7 @@ def ai_translate_view(request):
 
     page_id = request.GET.get('page_id')
     field = request.GET.get('field')
-    block_index_raw = request.GET.get('block_index')
+    block_index_raw = request.GET.getlist('block_index')
 
     if not page_id or not field:
         return HttpResponseBadRequest("Missing parameters")
@@ -81,49 +81,47 @@ def ai_translate_view(request):
             source_stream = [dict(b) for b in source_page.body.raw_data]
             stream_data = [dict(b) for b in target_draft.body.raw_data]
 
-            if block_index_raw is not None:
-                idx = int(block_index_raw)
-                if idx >= len(source_stream):
-                    msg = gettext("Block index out of range")
-                    messages.error(request, f"{msg} - {idx}.")
+            # Decide which blocks to translate:
+            #   - explicit indexes (from checkboxes / single button) → translate only those
+            #   - empty list       (from "Translate all" link)      → translate every translatable block
+            if block_index_raw:
+                try:
+                    target_indexes = sorted({int(x) for x in block_index_raw})
+                except ValueError:
+                    messages.error(request, gettext("Invalid block index."))
                     return redirect(edit_url)
+            else:
+                target_indexes = list(range(len(source_stream)))
+
+            translated_count = 0
+            skipped_count = 0
+            for idx in target_indexes:
+                if idx < 0 or idx >= len(source_stream):
+                    skipped_count += 1
+                    continue
                 block = source_stream[idx]
                 if block['type'] not in ('rich_text', 'html'):
-                    msg = gettext("Block type not supported for translation")
-                    messages.warning(request, f"{msg} - {idx + 1} ({block['type']})")
-                    return redirect(edit_url)
+                    skipped_count += 1
+                    continue
                 translated_value = _translate(block['value'])
                 if idx < len(stream_data):
                     stream_data[idx] = {**stream_data[idx], 'value': translated_value}
                 else:
                     stream_data.append({**block, 'value': translated_value})
+                translated_count += 1
+
+            if translated_count:
                 target_draft.body = stream_data
                 target_draft.save_revision(
                     user=request.user, changed=True, log_action=True, clean=False,
                 )
-                msg = gettext("Block translated")
-                messages.success(request, f"{msg} - {idx + 1}.")
-
+                msg = gettext("Blocks translated")
+                messages.success(request, f"{msg}: {translated_count}")
+                if skipped_count:
+                    skipped_msg = gettext("Blocks skipped (not translatable or out of range)")
+                    messages.info(request, f"{skipped_msg}: {skipped_count}")
             else:
-                # Translate all translatable blocks from the source
-                changed = False
-                for i, block in enumerate(source_stream):
-                    if block['type'] not in ('rich_text', 'html'):
-                        continue
-                    translated_value = _translate(block['value'])
-                    if i < len(stream_data):
-                        stream_data[i] = {**stream_data[i], 'value': translated_value}
-                    else:
-                        stream_data.append({**block, 'value': translated_value})
-                    changed = True
-                if changed:
-                    target_draft.body = stream_data
-                    target_draft.save_revision(
-                        user=request.user, changed=True, log_action=True, clean=False,
-                    )
-                    messages.success(request, gettext("All blocks translated."))
-                else:
-                    messages.warning(request, gettext("No translatable blocks found in source page."))
+                messages.warning(request, gettext("No translatable blocks selected."))
 
         else:
             msg = gettext("Unknown field")

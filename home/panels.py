@@ -64,6 +64,7 @@ class TranslationToolsPanel(Panel):
                     raw = str(block_data.get('value', ''))
                     preview = re.sub(r'<[^>]+>', '', raw)[:120].strip() or '—'
                     blocks.append({
+                        'index': i,
                         'num': i + 1,
                         'type': block_data['type'],
                         'preview': preview,
@@ -73,6 +74,8 @@ class TranslationToolsPanel(Panel):
             context = {
                 'field_items': field_items,
                 'blocks': blocks,
+                'page_id': page.pk,
+                'base_url': base_url,
                 'translate_all_url': f'{base_url}?page_id={page.pk}&field=body',
             }
 

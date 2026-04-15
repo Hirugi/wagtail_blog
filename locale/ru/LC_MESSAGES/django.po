@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 19:52+0900\n"
+"POT-Creation-Date: 2026-04-15 15:16+0900\n"
 "PO-Revision-Date: 2025-08-08 15:05+0900\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ru\n"
@@ -360,7 +360,7 @@ msgid "Note"
 msgstr "Заметки"
 
 #: home/templates/home/panels/translation_tools.html:24
-#: home/templates/home/panels/translation_tools.html:49
+#: home/templates/home/panels/translation_tools.html:57
 msgid "Translate"
 msgstr "Перевод"
 
@@ -369,20 +369,44 @@ msgid "Set default"
 msgstr "Установить умолчание"
 
 #: home/templates/home/panels/translation_tools.html:37
+#, fuzzy
+#| msgid "Select language"
+msgid "Select all"
+msgstr "Выбрать всё"
+
+#: home/templates/home/panels/translation_tools.html:40
 msgid "Type"
 msgstr "Тип"
 
-#: home/templates/home/panels/translation_tools.html:38
+#: home/templates/home/panels/translation_tools.html:41
 msgid "Preview"
 msgstr "Превью"
 
-#: home/templates/home/panels/translation_tools.html:58
-msgid "Translate all blocks"
-msgstr "Перевести все блоки"
+#: home/templates/home/panels/translation_tools.html:50
+msgid "Select block"
+msgstr "Выбрать блок"
+
+#: home/templates/home/panels/translation_tools.html:57
+msgid "Translate just this block"
+msgstr "Перевести этот блок"
+
+#: home/templates/home/panels/translation_tools.html:66
+msgid "Translate selected"
+msgstr "Перевести выбранное"
+
+#: home/templates/home/panels/translation_tools.html:69
+msgid "Translate all"
+msgstr "Перевести всё"
+
+#: home/templates/home/panels/translation_tools.html:106
+msgid "Please select at least one block."
+msgstr "Пожалуйста, выберите хотя бы один блок."
 
 #: home/translation_views.py:28
-msgid "Translation settings not configured. Go to Settings → Translation settings."
-msgstr "Настройки перевода не заданы. Перейдите в Настройки → Настройки перевода."
+msgid ""
+"Translation settings not configured. Go to Settings → Translation settings."
+msgstr ""
+"Настройки перевода не заданы. Перейдите в Настройки → Настройки перевода."
 
 #: home/translation_views.py:43
 msgid "Disclaimer set from default."
@@ -406,39 +430,32 @@ msgstr "Исходная страница не найдена для локал�
 
 #: home/translation_views.py:78
 msgid "Title translated."
-msgstr "Перевод"
+msgstr "Заголовок переведён."
 
-#: home/translation_views.py:87
-msgid "Block index out of range"
-msgstr "Индекс блока выходит за пределы допустимого диапазона"
+#: home/translation_views.py:91
+msgid "Invalid block index."
+msgstr "Некорректный индекс блока."
 
-#: home/translation_views.py:92
-msgid "Block type not supported for translation"
-msgstr "Тип блока не поддерживается для перевода"
+#: home/translation_views.py:118
+msgid "Blocks translated"
+msgstr "Блоки переведены"
 
-#: home/translation_views.py:104
-msgid "Block translated"
-msgstr "Перевод"
+#: home/translation_views.py:121
+msgid "Blocks skipped (not translatable or out of range)"
+msgstr "Пропущенные блоки (не поддаются переводу или выходят за пределы допустимого диапазона)"
 
 #: home/translation_views.py:124
-msgid "All blocks translated."
-msgstr "Все блоки переведены."
+msgid "No translatable blocks selected."
+msgstr "Блоки, доступные для перевода, не выбраны."
 
-#: home/translation_views.py:126
-msgid "No translatable blocks found in source page."
-msgstr "На исходной странице не найдено переводимых блоков."
-
-#: home/translation_views.py:129
+#: home/translation_views.py:127
 msgid "Unknown field"
 msgstr "Неизвестное поле"
 
-#: home/translation_views.py:133
+#: home/translation_views.py:131
 msgid "Translation error"
-msgstr "Промпт для перевода"
+msgstr "Ошибка перевода"
 
-#: home/translation_views.py:136
+#: home/translation_views.py:134
 msgid "Unexpected error during translation"
 msgstr "Неожиданная ошибка во время перевода"
-
-#~ msgid "Tag cloud:"
-#~ msgstr "Облако тегов:"
