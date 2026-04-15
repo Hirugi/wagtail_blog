@@ -26,7 +26,14 @@ def translation_tools_css():
 
 @receiver(copy_for_translation_done)
 def auto_translate_on_copy(sender, source_obj, target_obj, **kwargs):
-    """Auto-translate when Wagtail copies a page for translation"""
+    """
+    Auto-translate when Wagtail copies a page for translation.
+
+    Only translates the title (single API call) and sets the
+    default disclaimer — keeps the HTTP request well under the gunicorn
+    worker timeout. Body blocks are translated on-demand via the manual
+    Translation tools panel.
+    """
 
     if not isinstance(target_obj, BlogPage):
         return
@@ -54,20 +61,14 @@ def auto_translate_on_copy(sender, source_obj, target_obj, **kwargs):
     )
     source = latest.as_object() if latest else source_obj.specific
 
-    def _t(text):
-        return translate_text(text, lang_config.system_prompt, ts.provider, ts.api_key, ts.model, ts.base_url)
-
     try:
-        target_obj.title = _t(source.title)
+        target_obj.title = translate_text(
+            source.title, lang_config.system_prompt,
+            ts.provider, ts.api_key, ts.model, ts.base_url,
+        )
 
         if lang_config.default_disclaimer:
             target_obj.disclaimer = lang_config.default_disclaimer
-
-        stream_data = [dict(b) for b in source.body.raw_data]
-        for i, block in enumerate(stream_data):
-            if block['type'] in ('rich_text', 'html'):
-                stream_data[i] = {**block, 'value': _t(block['value'])}
-        target_obj.body = stream_data
 
         target_obj.save_revision(changed=True, clean=False)
     except Exception:
