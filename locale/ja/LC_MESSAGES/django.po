@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 13:27+0900\n"
+"POT-Creation-Date: 2026-04-14 19:52+0900\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ja\n"
@@ -27,172 +27,252 @@ msgstr "Русский/English"
 msgid "Search"
 msgstr "検索"
 
-#: home/models.py:30 home/models.py:41
+#: home/models.py:33 home/models.py:44
 msgid "Image"
 msgstr "画像"
 
-#: home/models.py:30
+#: home/models.py:33
 msgid "Images"
 msgstr "画像一覧"
 
-#: home/models.py:34
+#: home/models.py:37
 msgid "Image carousel"
 msgstr "画像カルーセル"
 
-#: home/models.py:46
+#: home/models.py:49
 msgid "Alternative text"
 msgstr "記述テキスト"
 
-#: home/models.py:47
+#: home/models.py:50
 msgid "Don't downscale on upload"
 msgstr "アップロード時に縮小しない"
 
-#: home/models.py:103
+#: home/models.py:106
 msgid "Label"
 msgstr "ラベル"
 
-#: home/models.py:110
+#: home/models.py:113
 msgid "Page"
 msgstr "ページ"
 
-#: home/models.py:111
+#: home/models.py:114
 msgid "Select a page to link to. Takes priority over the URL field."
 msgstr "リンク先のページを選択してください。URLフィールドよりも優先されます。"
 
-#: home/models.py:116
+#: home/models.py:119
 msgid "URL"
 msgstr "URL"
 
-#: home/models.py:117
+#: home/models.py:120
 msgid ""
 "Used when no page is selected. Enter a full URL (e.g. https://"
 "blog.example.com) or a path starting with / for internal links."
 msgstr ""
 "ページが選択されていない場合に使用します。完全なURL（例：https://"
-"blog.example.com）を入力するか、内部リンクの場合は / で始まるパスを入力してください。"
+"blog.example.com）を入力するか、内部リンクの場合は / で始まるパスを入力してく"
+"ださい。"
 
-#: home/models.py:125
+#: home/models.py:128
 msgid "Link target (page takes priority over URL)"
 msgstr "リンク先（ページがURLよりも優先されます）"
 
-#: home/models.py:137
+#: home/models.py:140
 msgid "Navigation link"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:138
+#: home/models.py:141
 msgid "Navigation links"
 msgstr "ナビゲーションリンク"
 
-#: home/models.py:151
+#: home/models.py:154
 msgid "Icon"
 msgstr "アイコン"
 
-#: home/models.py:164
+#: home/models.py:167
 msgid "Social link"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:165 home/models.py:195
+#: home/models.py:168 home/models.py:198
 msgid "Social links"
 msgstr "ソーシャルリンク"
 
-#: home/models.py:176
+#: home/models.py:179
 msgid "Header links"
 msgstr "ヘッダーリンク"
 
-#: home/models.py:177
+#: home/models.py:180
 msgid "Show search"
 msgstr "検索バーを表示する"
 
-#: home/models.py:185
+#: home/models.py:188
 msgid "Header settings"
 msgstr "ヘッダー設定"
 
-#: home/models.py:192
+#: home/models.py:195
 msgid "Footer links"
 msgstr "フッターリンク"
 
-#: home/models.py:196
+#: home/models.py:199
 msgid "Copyright"
 msgstr "著作権"
 
-#: home/models.py:205
+#: home/models.py:208
 msgid "Footer settings"
 msgstr "フッター設定"
 
-#: home/models.py:212
+#: home/models.py:220 home/models.py:298
+msgid "Language"
+msgstr "Русский/English"
+
+#: home/models.py:223
+msgid "Translation prompt"
+msgstr "翻訳プロンプト"
+
+#: home/models.py:224
+msgid ""
+"Instructions for the AI: target language, writing style, formatting rules, "
+"etc."
+msgstr "AIへの指示：対象言語、文体、書式設定ルールなど"
+
+#: home/models.py:228
+msgid "Default disclaimer"
+msgstr "免責事項"
+
+#: home/models.py:229
+msgid ""
+"Auto-filled in the page disclaimer field when translating (e.g. \"Translated "
+"with AI\")"
+msgstr ""
+"翻訳時にページ免責事項欄に自動入力されます（例：「AIで翻訳されました」）"
+
+#: home/models.py:242
+msgid "Language translation config"
+msgstr "Русский/English"
+
+#: home/models.py:243
+msgid "Language translation configs"
+msgstr "Русский/English"
+
+#: home/models.py:260
+msgid "Source language"
+msgstr "言語を選択"
+
+#: home/models.py:261
+msgid "The language your posts are originally written in"
+msgstr "投稿が元々書かれた言語"
+
+#: home/models.py:270 home/models.py:297
+msgid "AI provider"
+msgstr "AIプロバイダー"
+
+#: home/models.py:275
+msgid "API key"
+msgstr "APIキー"
+
+#: home/models.py:280
+msgid "Model"
+msgstr "モデル"
+
+#: home/models.py:281
+msgid "e.g. claude-sonnet-4-6, gpt-4o, mistral-large-latest"
+msgstr "例：claude-sonnet-4-6, gpt-4o, mistral-large-latest"
+
+#: home/models.py:286
+msgid "Base URL"
+msgstr "ベースURL"
+
+#: home/models.py:287
+msgid ""
+"OpenAI-compatible only. Leave blank for OpenAI. Example: https://"
+"api.deepseek.com/v1"
+msgstr ""
+"OpenAI互換のみ。OpenAIの場合は空欄のままにしてください。例：https://"
+"api.deepseek.com/v1"
+
+#: home/models.py:298
+msgid "Per-language settings"
+msgstr "Русский/English"
+
+#: home/models.py:302
+msgid "Translation settings"
+msgstr "翻訳設定"
+
+#: home/models.py:309
 msgid "Posts per page"
 msgstr "ページあたりの投稿数"
 
-#: home/models.py:213
+#: home/models.py:310
 msgid "Max tags in cloud"
 msgstr "タグクラウドの最大数"
 
-#: home/models.py:306 home/models.py:316
+#: home/models.py:403 home/models.py:413
 msgid "Views"
 msgstr "視聴回数"
 
-#: home/models.py:378 home/templates/home/blog_page.html:52
+#: home/models.py:475 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "旅行日"
 
-#: home/models.py:381
+#: home/models.py:478
 msgid "Month and year of the trip"
 msgstr "旅行の月と年"
 
-#: home/models.py:392 home/models.py:470
+#: home/models.py:489 home/models.py:568
 msgid "Content"
 msgstr "コンテンツ"
 
-#: home/models.py:400
+#: home/models.py:497
 msgid "Cover image"
 msgstr "カバー画像"
 
-#: home/models.py:404
+#: home/models.py:501
 msgid "Disclaimer"
 msgstr "免責事項"
 
-#: home/models.py:405
+#: home/models.py:502
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
 msgstr "投稿の上部に表示される免責事項テキスト（投稿の要約には表示されません）"
 
-#: home/models.py:415
+#: home/models.py:512
 msgid "Previous part"
 msgstr "前のパート"
 
-#: home/models.py:420
+#: home/models.py:517
 msgid "Previous part link text"
 msgstr "前のパートへのリンクテキスト"
 
-#: home/models.py:421
+#: home/models.py:518
 msgid "Text displayed on the link to the previous part"
 msgstr "前のパートへのリンクに表示するテキスト"
 
-#: home/models.py:429
-#, fuzzy
-#| msgid "Next"
+#: home/models.py:526
 msgid "Next part"
 msgstr "次のパート"
 
-#: home/models.py:434
+#: home/models.py:531
 msgid "Next part link text"
 msgstr "次のパートへのリンクテキスト"
 
-#: home/models.py:435
+#: home/models.py:532
 msgid "Text displayed on the link to the next part"
 msgstr "次のパートへのリンクに表示するテキスト"
 
-#: home/models.py:449
+#: home/models.py:546
 msgid "Series navigation"
 msgstr "シリーズのナビ"
 
-#: home/models.py:485
+#: home/models.py:547
+msgid "Translation tools"
+msgstr "翻訳ツール"
+
+#: home/models.py:583
 msgid "Standard page"
 msgstr "スタンダードページ"
 
-#: home/models.py:486
+#: home/models.py:584
 msgid "Standard pages"
 msgstr "スタンダードページ"
 
@@ -255,6 +335,102 @@ msgstr "次へ"
 #: home/templates/home/home_page.html:127
 msgid "No posts yet."
 msgstr "投稿はまだありません。"
+
+#: home/templates/home/panels/translation_tools.html:6
+msgid ""
+"Save the page before translating — buttons work on the last saved version."
+msgstr ""
+"翻訳する前にページを保存してください。ボタンは最後に保存したバージョンで機能"
+"します。"
+
+#: home/templates/home/panels/translation_tools.html:12
+msgid "Field"
+msgstr "フィールド"
+
+#: home/templates/home/panels/translation_tools.html:13
+msgid "Note"
+msgstr "ノート"
+
+#: home/templates/home/panels/translation_tools.html:24
+#: home/templates/home/panels/translation_tools.html:49
+msgid "Translate"
+msgstr "翻訳"
+
+#: home/templates/home/panels/translation_tools.html:24
+msgid "Set default"
+msgstr "デフォルトにする"
+
+#: home/templates/home/panels/translation_tools.html:37
+msgid "Type"
+msgstr "タイプ"
+
+#: home/templates/home/panels/translation_tools.html:38
+msgid "Preview"
+msgstr "プレビュー"
+
+#: home/templates/home/panels/translation_tools.html:58
+msgid "Translate all blocks"
+msgstr "すべてのブロックを翻訳する"
+
+#: home/translation_views.py:28
+msgid "Translation settings not configured. Go to Settings → Translation settings."
+msgstr "翻訳設定が構成されていません。設定 → 翻訳設定に移動してください。"
+
+#: home/translation_views.py:43
+msgid "Disclaimer set from default."
+msgstr "免責事項はデフォルト設定から変更されています。"
+
+#: home/translation_views.py:45
+msgid "No default disclaimer configured for this language."
+msgstr "この言語には、デフォルトの免責事項が設定されていません。"
+
+#: home/translation_views.py:50
+msgid "API key not configured in Translation settings."
+msgstr "翻訳設定でAPIキーが設定されていません。"
+
+#: home/translation_views.py:56
+msgid "Source language not configured in Translation settings."
+msgstr "翻訳設定でソース言語が設定されていません。"
+
+#: home/translation_views.py:62
+msgid "Source page not found for locale"
+msgstr "指定されたロケールのソースページが見つかりません"
+
+#: home/translation_views.py:78
+msgid "Title translated."
+msgstr "翻訳"
+
+#: home/translation_views.py:87
+msgid "Block index out of range"
+msgstr "ブロックインデックスが範囲外です"
+
+#: home/translation_views.py:92
+msgid "Block type not supported for translation"
+msgstr "ブロックタイプは変換でサポートされていません"
+
+#: home/translation_views.py:104
+msgid "Block translated"
+msgstr "翻訳"
+
+#: home/translation_views.py:124
+msgid "All blocks translated."
+msgstr "すべてのブロックが翻訳されました。"
+
+#: home/translation_views.py:126
+msgid "No translatable blocks found in source page."
+msgstr "ソース ページに翻訳可能なブロックが見つかりません。"
+
+#: home/translation_views.py:129
+msgid "Unknown field"
+msgstr "未知のフィールド"
+
+#: home/translation_views.py:133
+msgid "Translation error"
+msgstr "翻訳プロンプト"
+
+#: home/translation_views.py:136
+msgid "Unexpected error during translation"
+msgstr "翻訳中に予期しないエラーが発生しました"
 
 #~ msgid "Tag cloud:"
 #~ msgstr "タグクラウド:"

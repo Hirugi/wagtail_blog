@@ -1,0 +1,66 @@
+{% load i18n %}
+<div class="tt-panel">
+
+    <div class="tt-notice">
+        <span class="tt-notice-icon">&#9888;</span>
+        {% trans "Save the page before translating — buttons work on the last saved version." %}
+    </div>
+
+    <table class="tt-table">
+        <thead>
+            <tr>
+                <th class="tt-th-field">{% trans "Field" %}</th>
+                <th class="tt-th-detail">{% trans "Note" %}</th>
+                <th class="tt-th-action"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in field_items %}
+            <tr>
+                <td class="tt-field-name">{{ item.label }}</td>
+                <td class="tt-field-note">{% if item.note %}{{ item.note }}{% else %}—{% endif %}</td>
+                <td class="tt-field-action">
+                    <a href="{{ item.url }}" class="tt-btn {% if item.ai %}tt-btn--ai{% else %}tt-btn--default{% endif %}">
+                        {% if item.ai %}{% trans "Translate" %}{% else %}{% trans "Set default" %}{% endif %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if blocks %}
+    <table class="tt-table tt-table--blocks">
+        <thead>
+            <tr>
+                <th class="tt-th-num">#</th>
+                <th class="tt-th-type">{% trans "Type" %}</th>
+                <th class="tt-th-preview">{% trans "Preview" %}</th>
+                <th class="tt-th-action"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for block in blocks %}
+            <tr>
+                <td class="tt-block-num">{{ block.num }}</td>
+                <td class="tt-block-type">{{ block.type }}</td>
+                <td class="tt-block-preview" title="{{ block.preview }}">{{ block.preview }}</td>
+                <td class="tt-block-action">
+                    <a href="{{ block.url }}" class="tt-btn tt-btn--ai tt-btn--sm" title="{% trans "Translate" %}">{% trans "Translate" %}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="tt-table-foot">
+                    <a href="{{ translate_all_url }}" class="tt-btn tt-btn--all">
+                        {% trans "Translate all blocks" %}
+                    </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    {% endif %}
+
+</div>

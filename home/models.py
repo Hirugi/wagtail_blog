@@ -12,8 +12,9 @@ from django.db.models import Count
 from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
 from taggit.models import TaggedItemBase
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel, PageChooserPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel, PageChooserPanel
 from wagtail.blocks import RichTextBlock, RawHTMLBlock, StructBlock, ListBlock
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import StreamField
@@ -24,6 +25,8 @@ from wagtail.models import Page, TranslatableMixin
 from wagtail.search import index
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.snippets.models import register_snippet
+
+from home.panels import TranslationToolsPanel
 
 
 class ImageCarouselBlock(StructBlock):
@@ -106,7 +109,7 @@ class NavLink(TranslatableMixin, models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name='nav_links',
         verbose_name=_("Page"),
         help_text=_("Select a page to link to. Takes priority over the URL field."),
     )
@@ -203,6 +206,100 @@ class FooterSettings(BaseSiteSetting):
 
     class Meta:
         verbose_name = _("Footer settings")
+
+
+class LanguageTranslationConfig(models.Model):
+    translation_settings = ParentalKey(
+        'TranslationSettings',
+        on_delete=models.CASCADE,
+        related_name='language_configs',
+    )
+    locale = models.ForeignKey(
+        'wagtailcore.Locale',
+        on_delete=models.CASCADE,
+        verbose_name=_('Language'),
+    )
+    system_prompt = models.TextField(
+        verbose_name=_('Translation prompt'),
+        help_text=_('Instructions for the AI: target language, writing style, formatting rules, etc.'),
+    )
+    default_disclaimer = models.TextField(
+        blank=True,
+        verbose_name=_('Default disclaimer'),
+        help_text=_('Auto-filled in the page disclaimer field when translating (e.g. "Translated with AI")'),
+    )
+
+    panels = [
+        FieldPanel('locale'),
+        FieldPanel('system_prompt'),
+        FieldPanel('default_disclaimer'),
+    ]
+
+    def __str__(self):
+        return str(self.locale)
+
+    class Meta:
+        verbose_name = _('Language translation config')
+        verbose_name_plural = _('Language translation configs')
+        constraints = [
+            models.UniqueConstraint(
+                fields=('translation_settings', 'locale'),
+                name='unique_language_config_per_settings',
+            )
+        ]
+
+
+@register_setting(icon='site')
+class TranslationSettings(ClusterableModel, BaseSiteSetting):
+    source_locale = models.ForeignKey(
+        'wagtailcore.Locale',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Source language'),
+        help_text=_('The language your posts are originally written in'),
+    )
+    provider = models.CharField(
+        max_length=50,
+        choices=[
+            ('anthropic', 'Anthropic (Claude)'),
+            ('openai', 'OpenAI-compatible  (ChatGPT, DeepSeek, Mistral, Ollama, …)'),
+        ],
+        default='anthropic',
+        verbose_name=_('AI provider'),
+    )
+    api_key = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name=_('API key'),
+    )
+    model = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name=_('Model'),
+        help_text=_('e.g. claude-sonnet-4-6, gpt-4o, mistral-large-latest'),
+    )
+    base_url = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name=_('Base URL'),
+        help_text=_('OpenAI-compatible only. Leave blank for OpenAI. Example: https://api.deepseek.com/v1'),
+    )
+
+    panels = [
+        MultiFieldPanel([
+            FieldPanel('source_locale'),
+            FieldPanel('provider'),
+            FieldPanel('api_key'),
+            FieldPanel('model'),
+            FieldPanel('base_url'),
+        ], heading=_('AI provider')),
+        InlinePanel('language_configs', label=_('Language'), heading=_('Per-language settings')),
+    ]
+
+    class Meta:
+        verbose_name = _('Translation settings')
 
 
 class HomePage(Page):
@@ -411,7 +508,7 @@ class BlogPage(PageBase):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name='next_parts',
         verbose_name=_('Previous part'),
     )
     prev_part_text = models.CharField(
@@ -425,7 +522,7 @@ class BlogPage(PageBase):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+',
+        related_name='prev_parts',
         verbose_name=_('Next part'),
     )
     next_part_text = models.CharField(
@@ -447,6 +544,7 @@ class BlogPage(PageBase):
             PageChooserPanel('next_part', 'home.BlogPage'),
             FieldPanel('next_part_text'),
         ], heading=_('Series navigation')),
+        TranslationToolsPanel(heading=_('Translation tools')),
     ]
     search_fields = Page.search_fields + [
         index.SearchField('title', partial_match=True),

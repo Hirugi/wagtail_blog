@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wagtail_blog_min\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-14 13:27+0900\n"
+"POT-Creation-Date: 2026-04-14 19:52+0900\n"
 "PO-Revision-Date: 2025-08-08 15:05+0900\n"
 "Last-Translator: Auto <auto@example.com>\n"
 "Language: ru\n"
@@ -28,132 +28,215 @@ msgstr "日本語/English"
 msgid "Search"
 msgstr "Поиск"
 
-#: home/models.py:30 home/models.py:41
+#: home/models.py:33 home/models.py:44
 msgid "Image"
 msgstr "Изображение"
 
-#: home/models.py:30
+#: home/models.py:33
 msgid "Images"
 msgstr "Изображения"
 
-#: home/models.py:34
+#: home/models.py:37
 msgid "Image carousel"
 msgstr "Карусель изображений"
 
-#: home/models.py:46
+#: home/models.py:49
 msgid "Alternative text"
 msgstr "Текст - описание"
 
-#: home/models.py:47
+#: home/models.py:50
 msgid "Don't downscale on upload"
 msgstr "Не уменьшать при загрузке"
 
-#: home/models.py:103
+#: home/models.py:106
 msgid "Label"
 msgstr "Текст ссылки"
 
-#: home/models.py:110
+#: home/models.py:113
 msgid "Page"
 msgstr "Страница"
 
-#: home/models.py:111
+#: home/models.py:114
 msgid "Select a page to link to. Takes priority over the URL field."
-msgstr "Выберите страницу, на которую нужно сослаться. Этот параметр имеет приоритет над полем URL."
+msgstr ""
+"Выберите страницу, на которую нужно сослаться. Этот параметр имеет приоритет "
+"над полем URL."
 
-#: home/models.py:116
+#: home/models.py:119
 msgid "URL"
 msgstr "URL"
 
-#: home/models.py:117
+#: home/models.py:120
 msgid ""
 "Used when no page is selected. Enter a full URL (e.g. https://"
 "blog.example.com) or a path starting with / for internal links."
 msgstr ""
-"Используется, если страница не выбрана. Введите полный URL-адрес (например, https://"
-"blog.example.com) или путь, начинающийся с /, для внутренних ссылок."
+"Используется, если страница не выбрана. Введите полный URL-адрес (например, "
+"https://blog.example.com) или путь, начинающийся с /, для внутренних ссылок."
 
-#: home/models.py:125
+#: home/models.py:128
 msgid "Link target (page takes priority over URL)"
 msgstr "Целевая ссылка (страница имеет приоритет над URL)"
 
-#: home/models.py:137
+#: home/models.py:140
 msgid "Navigation link"
 msgstr "Ссылка в навигации"
 
-#: home/models.py:138
+#: home/models.py:141
 msgid "Navigation links"
 msgstr "Ссылки в навигации"
 
-#: home/models.py:151
+#: home/models.py:154
 msgid "Icon"
 msgstr "Иконка"
 
-#: home/models.py:164
+#: home/models.py:167
 msgid "Social link"
 msgstr "Ссылка на соцсети"
 
-#: home/models.py:165 home/models.py:195
+#: home/models.py:168 home/models.py:198
 msgid "Social links"
 msgstr "Ссылки на соцсети"
 
-#: home/models.py:176
+#: home/models.py:179
 msgid "Header links"
 msgstr "Ссылки в хедере"
 
-#: home/models.py:177
+#: home/models.py:180
 msgid "Show search"
 msgstr "Отображать строку поиска"
 
-#: home/models.py:185
+#: home/models.py:188
 msgid "Header settings"
 msgstr "Настройки хедера"
 
-#: home/models.py:192
+#: home/models.py:195
 msgid "Footer links"
 msgstr "Ссылки в футере"
 
-#: home/models.py:196
+#: home/models.py:199
 msgid "Copyright"
 msgstr "Копирайт"
 
-#: home/models.py:205
+#: home/models.py:208
 msgid "Footer settings"
 msgstr "Настройки футера"
 
-#: home/models.py:212
+#: home/models.py:220 home/models.py:298
+#, fuzzy
+#| msgid "Language selection"
+msgid "Language"
+msgstr "日本語/English"
+
+#: home/models.py:223
+msgid "Translation prompt"
+msgstr "Промпт для перевода"
+
+#: home/models.py:224
+msgid ""
+"Instructions for the AI: target language, writing style, formatting rules, "
+"etc."
+msgstr ""
+"Инструкции для ИИ: целевой язык, стиль письма, правила форматирования, и т.д."
+
+#: home/models.py:228
+msgid "Default disclaimer"
+msgstr "Дисклеймер"
+
+#: home/models.py:229
+msgid ""
+"Auto-filled in the page disclaimer field when translating (e.g. \"Translated "
+"with AI\")"
+msgstr ""
+"Автоматически добавляемый дисклеймер при переводе (например, \"Переведено с "
+"помощью ИИ\")"
+
+#: home/models.py:242
+msgid "Language translation config"
+msgstr "日本語/English"
+
+#: home/models.py:243
+msgid "Language translation configs"
+msgstr "日本語/English"
+
+#: home/models.py:260
+msgid "Source language"
+msgstr "Выбрать язык"
+
+#: home/models.py:261
+msgid "The language your posts are originally written in"
+msgstr "Язык, на котором изначально написаны посты."
+
+#: home/models.py:270 home/models.py:297
+msgid "AI provider"
+msgstr "Провайдер ИИ"
+
+#: home/models.py:275
+msgid "API key"
+msgstr "API ключ"
+
+#: home/models.py:280
+msgid "Model"
+msgstr "Модель"
+
+#: home/models.py:281
+msgid "e.g. claude-sonnet-4-6, gpt-4o, mistral-large-latest"
+msgstr "например, claude-sonnet-4-6, gpt-4o, mistral-large-latest"
+
+#: home/models.py:286
+msgid "Base URL"
+msgstr "Базовый URL"
+
+#: home/models.py:287
+msgid ""
+"OpenAI-compatible only. Leave blank for OpenAI. Example: https://"
+"api.deepseek.com/v1"
+msgstr ""
+"Только для OpenAI-совместимых. Оставьте поле пустым для OpenAI. Пример: "
+"https://api.deepseek.com/v1"
+
+#: home/models.py:298
+msgid "Per-language settings"
+msgstr "日本語/English"
+
+#: home/models.py:302
+msgid "Translation settings"
+msgstr "Настройки переводов"
+
+#: home/models.py:309
 msgid "Posts per page"
 msgstr "Постов на странице"
 
-#: home/models.py:213
+#: home/models.py:310
 msgid "Max tags in cloud"
 msgstr "Максимум тегов в облаке"
 
-#: home/models.py:306 home/models.py:316
+#: home/models.py:403 home/models.py:413
 msgid "Views"
 msgstr "Просмотра(ов)"
 
-#: home/models.py:378 home/templates/home/blog_page.html:52
+#: home/models.py:475 home/templates/home/blog_page.html:52
 #: home/templates/home/home_page.html:23 home/templates/home/home_page.html:89
 msgid "Trip date"
 msgstr "Даты поездки"
 
-#: home/models.py:381
+#: home/models.py:478
 msgid "Month and year of the trip"
 msgstr "Месяц и год поездки"
 
-#: home/models.py:392 home/models.py:470
+#: home/models.py:489 home/models.py:568
 msgid "Content"
 msgstr "Контент"
 
-#: home/models.py:400
+#: home/models.py:497
 msgid "Cover image"
 msgstr "Обложка"
 
-#: home/models.py:404
+#: home/models.py:501
 msgid "Disclaimer"
 msgstr "Дисклеймер"
 
-#: home/models.py:405
+#: home/models.py:502
 msgid ""
 "Disclaimer text displayed at the top of the post (will not appear in post "
 "excerpts)"
@@ -161,39 +244,43 @@ msgstr ""
 "Текст дисклеймера, отображаемый в начале поста (не появится в кратком "
 "описании)"
 
-#: home/models.py:415
+#: home/models.py:512
 msgid "Previous part"
 msgstr "Предыдущая часть"
 
-#: home/models.py:420
+#: home/models.py:517
 msgid "Previous part link text"
 msgstr "Текст ссылки предыдущей части"
 
-#: home/models.py:421
+#: home/models.py:518
 msgid "Text displayed on the link to the previous part"
 msgstr "Текст, отображаемый на ссылке на предыдущую часть"
 
-#: home/models.py:429
+#: home/models.py:526
 msgid "Next part"
 msgstr "Следующая часть"
 
-#: home/models.py:434
+#: home/models.py:531
 msgid "Next part link text"
 msgstr "Текст ссылки следующей части"
 
-#: home/models.py:435
+#: home/models.py:532
 msgid "Text displayed on the link to the next part"
 msgstr "Текст, отображаемый на ссылке на следующую часть"
 
-#: home/models.py:449
+#: home/models.py:546
 msgid "Series navigation"
 msgstr "Навигация по частям"
 
-#: home/models.py:485
+#: home/models.py:547
+msgid "Translation tools"
+msgstr "Инструменты перевода"
+
+#: home/models.py:583
 msgid "Standard page"
 msgstr "Стандартная страница"
 
-#: home/models.py:486
+#: home/models.py:584
 msgid "Standard pages"
 msgstr "Стандартные страницы"
 
@@ -256,6 +343,102 @@ msgstr "Вперёд"
 #: home/templates/home/home_page.html:127
 msgid "No posts yet."
 msgstr "Пока нет публикаций."
+
+#: home/templates/home/panels/translation_tools.html:6
+msgid ""
+"Save the page before translating — buttons work on the last saved version."
+msgstr ""
+"Сохраните страницу перед переводом — кнопки работают с последней сохраненной "
+"версией."
+
+#: home/templates/home/panels/translation_tools.html:12
+msgid "Field"
+msgstr "Поле"
+
+#: home/templates/home/panels/translation_tools.html:13
+msgid "Note"
+msgstr "Заметки"
+
+#: home/templates/home/panels/translation_tools.html:24
+#: home/templates/home/panels/translation_tools.html:49
+msgid "Translate"
+msgstr "Перевод"
+
+#: home/templates/home/panels/translation_tools.html:24
+msgid "Set default"
+msgstr "Установить умолчание"
+
+#: home/templates/home/panels/translation_tools.html:37
+msgid "Type"
+msgstr "Тип"
+
+#: home/templates/home/panels/translation_tools.html:38
+msgid "Preview"
+msgstr "Превью"
+
+#: home/templates/home/panels/translation_tools.html:58
+msgid "Translate all blocks"
+msgstr "Перевести все блоки"
+
+#: home/translation_views.py:28
+msgid "Translation settings not configured. Go to Settings → Translation settings."
+msgstr "Настройки перевода не заданы. Перейдите в Настройки → Настройки перевода."
+
+#: home/translation_views.py:43
+msgid "Disclaimer set from default."
+msgstr "Дисклеймер установлен по умолчанию."
+
+#: home/translation_views.py:45
+msgid "No default disclaimer configured for this language."
+msgstr "Для этого языка не настроен дисклеймер по умолчанию."
+
+#: home/translation_views.py:50
+msgid "API key not configured in Translation settings."
+msgstr "Ключ API не указан в настройках перевода."
+
+#: home/translation_views.py:56
+msgid "Source language not configured in Translation settings."
+msgstr "Исходный язык не указан в настройках перевода."
+
+#: home/translation_views.py:62
+msgid "Source page not found for locale"
+msgstr "Исходная страница не найдена для локали"
+
+#: home/translation_views.py:78
+msgid "Title translated."
+msgstr "Перевод"
+
+#: home/translation_views.py:87
+msgid "Block index out of range"
+msgstr "Индекс блока выходит за пределы допустимого диапазона"
+
+#: home/translation_views.py:92
+msgid "Block type not supported for translation"
+msgstr "Тип блока не поддерживается для перевода"
+
+#: home/translation_views.py:104
+msgid "Block translated"
+msgstr "Перевод"
+
+#: home/translation_views.py:124
+msgid "All blocks translated."
+msgstr "Все блоки переведены."
+
+#: home/translation_views.py:126
+msgid "No translatable blocks found in source page."
+msgstr "На исходной странице не найдено переводимых блоков."
+
+#: home/translation_views.py:129
+msgid "Unknown field"
+msgstr "Неизвестное поле"
+
+#: home/translation_views.py:133
+msgid "Translation error"
+msgstr "Промпт для перевода"
+
+#: home/translation_views.py:136
+msgid "Unexpected error during translation"
+msgstr "Неожиданная ошибка во время перевода"
 
 #~ msgid "Tag cloud:"
 #~ msgstr "Облако тегов:"

@@ -1,0 +1,106 @@
+/* ── Translation-tools panel ─────────────────────────────── */
+.tt-panel {
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.875rem;
+}
+
+/* notice bar */
+.tt-notice {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: #fff8e1;
+    border-bottom: 1px solid #ffe082;
+    color: #6d5600;
+    font-size: 0.82em;
+    line-height: 1.4;
+}
+.tt-notice-icon {
+    font-size: 1em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* tables */
+.tt-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tt-table thead th {
+    padding: 8px 12px 4px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    text-align: left;
+    white-space: nowrap;
+}
+.tt-table tbody td {
+    padding: 6px 12px;
+    vertical-align: middle;
+    border-top: 1px solid #f0f0f0;
+}
+.tt-table--blocks { border-top: 1px solid #e0e0e0; }
+
+/* field columns */
+.tt-th-field, .tt-field-name { width: 100px; }
+.tt-field-name { font-weight: 600; }
+.tt-field-note { color: #888; font-style: italic; }
+.tt-th-action, .tt-field-action,
+.tt-block-action { width: 1%; white-space: nowrap; text-align: right; }
+
+/* block columns */
+.tt-th-num, .tt-block-num { width: 30px; text-align: center; color: #999; }
+.tt-th-type, .tt-block-type { width: 80px; }
+.tt-block-type { color: #888; font-family: monospace; font-size: 0.85em; }
+.tt-block-preview {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #555;
+}
+
+/* footer row */
+.tt-table-foot {
+    padding: 8px 12px !important;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* buttons */
+.tt-btn {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    line-height: 1.5;
+    transition: background 0.15s;
+}
+.tt-btn--ai {
+    color: #fff;
+    background: #00857a;
+    border-color: #00857a;
+}
+.tt-btn--ai:hover { background: #006d64; }
+.tt-btn--default {
+    color: #333;
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+.tt-btn--default:hover { background: #e8e8e8; }
+.tt-btn--all {
+    color: #00857a;
+    background: #fff;
+    border-color: #00857a;
+}
+.tt-btn--all:hover { background: #e6f5f3; }
