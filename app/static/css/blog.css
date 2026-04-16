@@ -663,3 +663,69 @@ h1, h2, h3 {
   font-size: 0.85rem;
   color: #6b7785;
 }
+
+/* ── Image loading placeholders ─────────────────────────── */
+@keyframes img-placeholder-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Container setup — gray bg + spinner while image loads */
+.post-media {
+    display: block;
+    position: relative;
+    aspect-ratio: 2 / 1;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.post-responsive-image {
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.carousel__slide {
+    position: relative;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+/* Spinner pseudo-element */
+.post-media::after,
+.post-responsive-image::after,
+.carousel__slide::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #aaa;
+    border-radius: 50%;
+    animation: img-placeholder-spin 0.8s linear infinite;
+    pointer-events: none;
+}
+
+/* Image sits on top of the spinner */
+.post-media > img,
+.post-responsive-image > img,
+.carousel__slide > img {
+    position: relative;
+    z-index: 1;
+}
+
+/* Once loaded — remove background & spinner */
+.post-media.is-loaded,
+.post-responsive-image.is-loaded,
+.carousel__slide.is-loaded {
+    background: transparent;
+}
+.post-media.is-loaded::after,
+.post-responsive-image.is-loaded::after,
+.carousel__slide.is-loaded::after {
+    display: none;
+}

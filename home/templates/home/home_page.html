@@ -80,7 +80,7 @@
                     {% if post.cover_image %}
                         {% image post.cover_image fill-1200x600 as cover %}
                         <a href="{{ post.url }}" class="post-media">
-                            <img class="post-media-img" src="{{ cover.url }}" alt="{{ post.title }}">
+                            <img class="post-media-img" src="{{ cover.url }}" width="{{ cover.width }}" height="{{ cover.height }}" alt="{{ post.title }}">
                         </a>
                     {% endif %}
                     <div class="post-content">

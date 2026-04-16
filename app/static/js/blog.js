@@ -282,4 +282,27 @@
   });
 })();
 
+// ── Image loading placeholders ────────────────────────────
+(function(){
+  var SEL = '.post-media, .post-responsive-image, .carousel__slide';
+
+  function markLoaded(img){
+    var c = img.closest(SEL);
+    if (c) c.classList.add('is-loaded');
+  }
+
+  // Capture-phase 'load' catches non-bubbling events from every <img>
+  document.addEventListener('load', function(e){
+    if (e.target.tagName === 'IMG') markLoaded(e.target);
+  }, true);
+
+  // Mark already-cached images on page load
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll(SEL).forEach(function(c){
+      var img = c.querySelector('img');
+      if (img && img.complete && img.naturalHeight > 0) markLoaded(img);
+    });
+  });
+})();
+
 

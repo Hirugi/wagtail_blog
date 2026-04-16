@@ -3,6 +3,8 @@
   {% image self width-1200 as rendition %}
   {% image self width-2000 as big %}
   <img src="{{ rendition.url }}"
+       width="{{ rendition.width }}"
+       height="{{ rendition.height }}"
        data-fullsrc="{{ big.url }}"
        data-zoomable
        loading="lazy"
