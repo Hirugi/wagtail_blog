@@ -146,6 +146,11 @@ LANGUAGES = [
 ]
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES
 
+# Language the bare site root ("/") redirects to when the visitor has no saved
+# language choice and their browser doesn't request a supported one.
+# Must be one of LANGUAGES. See app.views.root_redirect.
+ROOT_DEFAULT_LANGUAGE = "ru"
+
 USE_TZ = True
 
 # Where to search for project-level translations

@@ -4,8 +4,58 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils import translation
+from django.utils.translation import get_supported_language_variant
+from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_POST
 from wagtail.models import Site
+
+
+def _language_for_root(request):
+    """
+    Choose the language to send a visitor of the bare site root ("/") to.
+
+    Precedence mirrors Django's ``get_language_from_request`` but with a
+    configurable fallback (``settings.ROOT_DEFAULT_LANGUAGE``) instead of
+    ``LANGUAGE_CODE``:
+
+    1. A language the visitor previously chose, stored in the language cookie
+       by :func:`switch_language`.
+    2. The best supported match for the browser's ``Accept-Language`` header.
+    3. ``settings.ROOT_DEFAULT_LANGUAGE`` when nothing above matches a
+       supported locale.
+    """
+    cookie = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
+    if cookie:
+        try:
+            return get_supported_language_variant(cookie)
+        except LookupError:
+            pass
+
+    accept = request.META.get("HTTP_ACCEPT_LANGUAGE", "")
+    for accept_lang, _ in parse_accept_lang_header(accept):
+        if accept_lang == "*":
+            break
+        try:
+            return get_supported_language_variant(accept_lang)
+        except LookupError:
+            continue
+
+    return getattr(settings, "ROOT_DEFAULT_LANGUAGE", settings.LANGUAGE_CODE)
+
+
+def root_redirect(request):
+    """
+    Redirect the bare site root ("/") to the language-prefixed home page,
+    picking the language from the visitor's cookie / browser preference.
+
+    Only the bare "/" reaches this view; any URL that already carries a
+    language prefix is served by ``i18n_patterns`` and is left untouched.
+    """
+    target = f"/{_language_for_root(request)}/"
+    query = request.META.get("QUERY_STRING", "")
+    if query:
+        target = f"{target}?{query}"
+    return redirect(target)
 
 
 @require_POST

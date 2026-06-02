@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path
-from django.views.generic import RedirectView
 from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.contrib.sitemaps.views import sitemap
@@ -16,8 +15,9 @@ urlpatterns = [
     path("set-language/", app_views.switch_language, name="set_language"),
     path("robots.txt", app_views.robots_txt, name="robots_txt"),
     path("sitemap.xml", sitemap, name="sitemap"),
-    # По умолчанию открываем русскую локаль
-    path("", RedirectView.as_view(url="/ru/", permanent=False)),
+    # At the root, select the locale based on the browser language (with a fallback to ROOT_DEFAULT_LANGUAGE).
+    # URLs with a language prefix are not included here - they are served by i18n_patterns below.
+    path("", app_views.root_redirect, name="root"),
 ]
 
 urlpatterns += i18n_patterns(

@@ -176,7 +176,7 @@ class SocialLink(TranslatableMixin, models.Model):
 class HeaderSettings(BaseSiteSetting):
     header_links = StreamField([
         ("link", SnippetChooserBlock("home.NavLink")),
-    ], use_json_field=True, blank=True, verbose_name=_("Header links"))
+    ], blank=True, verbose_name=_("Header links"))
     show_search = models.BooleanField(default=True, verbose_name=_("Show search"))
 
     panels = [
@@ -192,10 +192,10 @@ class HeaderSettings(BaseSiteSetting):
 class FooterSettings(BaseSiteSetting):
     footer_links = StreamField([
         ("link", SnippetChooserBlock("home.NavLink")),
-    ], use_json_field=True, blank=True, verbose_name=_("Footer links"))
+    ], blank=True, verbose_name=_("Footer links"))
     social_links = StreamField([
         ("social", SnippetChooserBlock("home.SocialLink")),
-    ], use_json_field=True, blank=True, verbose_name=_("Social links"))
+    ], blank=True, verbose_name=_("Social links"))
     copyright = models.CharField(max_length=255, blank=True, default="", verbose_name=_("Copyright"))
 
     panels = [
@@ -484,7 +484,6 @@ class BlogPage(PageBase):
             ('image', ResponsiveImageBlock()),
             ('carousel', ImageCarouselBlock()),
         ],
-        use_json_field=True,
         blank=True,
         verbose_name=_('Content')
     )
@@ -547,8 +546,8 @@ class BlogPage(PageBase):
         TranslationToolsPanel(heading=_('Translation tools')),
     ]
     search_fields = Page.search_fields + [
-        index.SearchField('title', partial_match=True),
-        index.SearchField('body', partial_match=True),
+        index.SearchField('title'),
+        index.SearchField('body'),
     ]
 
     parent_page_types = ['home.HomePage']
@@ -563,7 +562,6 @@ class StandardPage(PageBase):
             ('image', ResponsiveImageBlock()),
             ('carousel', ImageCarouselBlock()),
         ],
-        use_json_field=True,
         blank=True,
         verbose_name=_("Content")
     )
@@ -572,8 +570,8 @@ class StandardPage(PageBase):
     ]
 
     search_fields = Page.search_fields + [
-        index.SearchField('title', partial_match=True),
-        index.SearchField('body', partial_match=True),
+        index.SearchField('title'),
+        index.SearchField('body'),
     ]
 
     parent_page_types = ['home.HomePage', 'home.StandardPage', 'wagtailcore.Page']
