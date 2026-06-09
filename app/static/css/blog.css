@@ -138,21 +138,24 @@ h1, h2, h3 {
 /* Tag cloud */
 .tag-cloud {
   margin-bottom: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 .tag-cloud-label {
-  color: var(--muted);
-  font-size: 0.98em;
-  margin-right: 8px;
+color: var(--muted);
+font-size: 0.98em;
+margin-right: 8px;
 }
 /* Tag chips */
 .tag-chip {
-  display: inline-block;
-  margin: 0 8px 8px 0;
-  color: var(--primary);
-  text-decoration: none;
-  font-size: 0.95em;
-  padding: 6px 12px;
-  border: 1px solid #cfe1f6;
+display: inline-block;
+margin: 0 8px 8px 0;
+color: var(--primary);
+text-decoration: none;
+font-size: 0.95em;
+padding: 6px 12px;
+border: 1px solid #cfe1f6;
   border-radius: 999px; /* круглые плашки */
   background: #f4f9ff;
 }
